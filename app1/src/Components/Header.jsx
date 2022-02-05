@@ -1,11 +1,14 @@
 const Header = () => {
 
     return (
-            <div className="container-fluid">
-                <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-                    <a className="navbar-brand text-light" href="#">MusicLearn</a>
+            <div className="container">
+                <nav className="navbar navbar-light bg-dark">
                     
-                    <a className="nav-link text-light my-lg-0" href="#">MusicLearn</a>
+                    <a className="nav-link text-light" href="#">MusicLearn</a>
+                    <a className="nav-link text-light" href="#">Choix d'instru</a>
+                    <a className="nav-link text-light" href="#">favoris</a>
+                    
+                    <a className="nav-link text-light" href="#">Profil</a>
                   
                 </nav>
             </div>
