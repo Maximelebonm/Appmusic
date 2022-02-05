@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "boostrap/dist/css/boostrap.css";
+import "bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 
 import './index.css';
