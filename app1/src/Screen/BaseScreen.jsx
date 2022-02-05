@@ -3,7 +3,6 @@ const BaseScreen = () => {
 
     return (
         <div>
-            Ceci est un
             <Header/>
         </div>
     );
