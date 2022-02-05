@@ -7,9 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<BaseScreen />}/>
-        <Route path="/Choixinstrument"element={<ChoixInstrumentScreen />} />
+        <Route path="/Choixinstrument" element={<ChoixInstrumentScreen />} />
       </Routes>
     </BrowserRouter>
   );
