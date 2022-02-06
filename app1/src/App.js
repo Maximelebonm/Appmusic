@@ -7,6 +7,7 @@ import NotFoundScreen from './Screens/NotFoundScreen';
 import AuthScreen from './Screens/AuthScreen';
 import ExplicationScreen from './Screens/ExplicationScreen';
 import PresentationScreen from './Screens/PresentationScreen';
+import GuitareScreen from './Screens/GuitareScreen';
 
 
 const App = () => {
@@ -16,13 +17,14 @@ const App = () => {
       <BrowserRouter>
         <Routes>
 
+            <Route path="/auth" element={<AuthScreen />}/>
    
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
-            <Route path="/auth" element={<AuthScreen />}/>
             <Route path="/presentation" element={<PresentationScreen />} />
             <Route path="/explication" element={<ExplicationScreen />} />
-            <Route path="/Choixinstrument" element={<ChoixInstrumentScreen />} />
+            <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />
+            <Route path="/guitare" element={<GuitareScreen />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Route>
         </Routes>
