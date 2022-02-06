@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
 
     return (
-            <div className="container-fluid p-0">
+            <div className="container p-0">
                 <nav className="navbar navbar-light bg-dark">
                     
                     <Link to="/" className="nav-link text-light" href="#">MusicLearn</Link>

@@ -6,16 +6,10 @@ const ChoixInstrumentScreen = () => {
         <div className="container">
             <div className="row">
                 <div className="col-3">
-                    <CardInstrument title="Guitare" />
+                    <CardInstrument title="Guitare" lien="/guitare" />
                 </div>
                 <div className="col-3">
-                    <CardInstrument title="Piano" />
-                </div>
-                <div className="col-3">
-                    <CardInstrument title="Saxophone" />
-                </div>
-                <div className="col-3">
-                    <CardInstrument title="Batterie" />
+                    <CardInstrument title="Piano" lien="/piano" />
                 </div>
             </div>
         </div>

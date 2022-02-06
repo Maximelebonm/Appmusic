@@ -8,19 +8,20 @@ import AuthScreen from './Screens/AuthScreen';
 import ExplicationScreen from './Screens/ExplicationScreen';
 import PresentationScreen from './Screens/PresentationScreen';
 import GuitareScreen from './Screens/GuitareScreen';
+import PlayScreen from './Screens/PlayScreen';
 
 
 const App = () => {
   return (
     <>
-
       <BrowserRouter>
         <Routes>
 
             <Route path="/auth" element={<AuthScreen />}/>
-   
+
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
+            <Route path="/play" element={<PlayScreen />} />
             <Route path="/presentation" element={<PresentationScreen />} />
             <Route path="/explication" element={<ExplicationScreen />} />
             <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />
