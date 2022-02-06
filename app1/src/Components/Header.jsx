@@ -9,8 +9,7 @@ const Header = () => {
                     </nav>
                     <nav className="navbar justify-content-center">
                     <Link to="/choixinstrument" className="nav-link text-light" href="#">Choix d'instru</Link>
-                    <a className="nav-link text-light" href="#">favoris</a>
-                    
+                    <a className="nav-link text-light" href="#">Favoris</a>                    
                     <a className="nav-link text-light" href="#">Profil</a>
                   </nav>
                 </nav>
