@@ -8,9 +8,15 @@ import AuthScreen from './Screens/AuthScreen';
 
 const App = () => {
   return (
+    <>
     <BrowserRouter>
       <Routes>
         <Route path="/authscreen" element={<AuthScreen />}/>
+       
+      </Routes>
+    </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
         <Route path="/" element={<BaseScreen />}>
         <Route index element={<HomeScreen />} />
           <Route path="/Choixinstrument" element={<ChoixInstrumentScreen />} />
@@ -18,6 +24,7 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
