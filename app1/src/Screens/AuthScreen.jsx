@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 const AuthScreen = () => {
     return (
         <>
+        <Link to="/explication"><div className="btn btn-dark">Explication</div></Link>
+        <Link to="/presentation"><div className="btn btn-dark">Explication</div></Link>
         <div className="container col-6">
         <form>
         <div class="mb-3">

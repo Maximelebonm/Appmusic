@@ -14,12 +14,12 @@ const App = () => {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/auth" element={<AuthScreen />}/>
-            <Route path="/explication" element={<ExplicationScreen />} />
 
    
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
+            <Route path="/auth" element={<AuthScreen />}/>
+            <Route path="/explication" element={<ExplicationScreen />} />
             <Route path="/Choixinstrument" element={<ChoixInstrumentScreen />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Route>

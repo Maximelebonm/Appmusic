@@ -1,5 +1,6 @@
 import Header from "../Components/Header";
 import { Outlet } from "react-router-dom";
+import Footer from "../Components/Footer";
 
 const BaseScreen = () => {
 
@@ -9,6 +10,7 @@ const BaseScreen = () => {
             <main className="container">
             <Outlet />
             </main>
+            <Footer />
         </>
     );
 };
