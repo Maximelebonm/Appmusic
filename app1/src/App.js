@@ -9,6 +9,7 @@ import ExplicationScreen from './Screens/ExplicationScreen';
 import PresentationScreen from './Screens/PresentationScreen';
 import GuitareScreen from './Screens/GuitareScreen';
 import PlayScreen from './Screens/PlayScreen';
+import CreationScreen from './Screens/creationScreen';
 
 
 const App = () => {
@@ -21,11 +22,12 @@ const App = () => {
 
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
-            <Route path="/play" element={<PlayScreen />} />
             <Route path="/presentation" element={<PresentationScreen />} />
             <Route path="/explication" element={<ExplicationScreen />} />
             <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />
+            <Route path="/creation" element={<CreationScreen />} />
             <Route path="/guitare" element={<GuitareScreen />} />
+            <Route path="/play" element={<PlayScreen />} />
             <Route path="*" element={<NotFoundScreen />} />
           </Route>
         </Routes>
