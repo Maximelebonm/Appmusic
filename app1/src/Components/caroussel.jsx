@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 
 const Caroussel = (props) => {
     useState(() => {
-        const[lecteur, setLecteur] = useState(0);
+        const [lecteur, setLecteur] = useState(0);
+
+        return (
+
+        );
 
     });
 
