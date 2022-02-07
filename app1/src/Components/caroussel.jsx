@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
-const Caroussel = (props) => {
+export function Caroussel (props) {
+    
+    const [lecteur, setLecteur] = useState(0);
+    
     useState(() => {
-        const [lecteur, setLecteur] = useState(0);
 
         return (
-
+            <></>
         );
 
     });
 
     useEffect(() => {
 
+        return (
+            <></>
+        );
     });
 
 
@@ -25,4 +30,4 @@ const Caroussel = (props) => {
     )
 
 };
-export default Caroussel;
+

@@ -1,4 +1,4 @@
-import { Caroussel } from "../Components/caroussel";
+import { Caroussel } from "../Components/Caroussel";
 
 const PlayScreen = () => {
     return ( 
