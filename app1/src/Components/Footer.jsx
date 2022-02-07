@@ -40,7 +40,7 @@ const Footer = () => {
             </div>
 
             <div className="text-center p-3 bg-dark text-light" >
-                © 2020 Copyright:
+                © 2022 Copyright:
                 <Link to="/">MusicLearn.com</Link>
             </div>
 

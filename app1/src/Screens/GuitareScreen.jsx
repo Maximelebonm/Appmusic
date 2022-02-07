@@ -3,7 +3,14 @@ const GuitareScreen = () => {
     return (
         <div classNmae="container-fluid">
         <div className="row">
-
+        <div className="col-12 bg-success justify-content-center">
+            
+             <Link to="/play" className="text-light" > 
+                music actu 1
+            </Link>
+               
+           
+            </div>
     
      <div className="col-6 bg-primary text-light">
              <ul>
@@ -16,7 +23,7 @@ const GuitareScreen = () => {
             </ul>
 
      </div>
-     <div className="col-6 bg-primary text-light">
+     <div className="col-6 bg-info text-light">
            
              <Link to="/creation" className="text-light" > 
                  création de musique  
@@ -33,16 +40,7 @@ const GuitareScreen = () => {
                 <li>music favoris 4</li>
             </ul>
             </div>
-            <div className="col-6 bg-success">
-            <ul>
-             <Link to="/play" className="text-light" > 
-                <li>music actu 1</li> 
-            </Link>
-                <li>music actu 2</li>
-                <li>music actu 3</li>
-                <li>music actu 4</li>
-            </ul>
-            </div>
+      
             <div className="col-6 bg-warning">
             <ul>
              <Link to="/play" className="text-light" > 
