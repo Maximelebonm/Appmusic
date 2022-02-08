@@ -10,6 +10,6 @@ export class PlayerGuitare extends BaseModel{
 
     title = "";
     description = "";
-    image=""
+    image="";
 
 };
