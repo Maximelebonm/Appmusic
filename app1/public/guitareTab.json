@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Hommes",
+        "image":"https://picsum.photos/id/1001/400/200",
+        "description":"accord1"
+    },
+    {
+        "id": 2,
+        "title": "Femmes",
+        "image":"https://picsum.photos/id/237/400/200",
+        "description":"accord2"
+    },
+    {
+        "id": 3,
+        "title": "Enfants",
+        "image":"https://picsum.photos/id/452/400/200",
+        "description":"accord3"
+    },
+    {
+        "id": 4,
+        "title": "Bébés",
+        "image":"https://picsum.photos/id/741/400/200",
+        "description":"accord4"
+    }
+]
