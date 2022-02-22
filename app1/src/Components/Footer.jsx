@@ -4,27 +4,27 @@ const Footer = () => {
     return (
         <footer className="bg-dark text-center text-lg-start">
 
-            <div class="container ">
+            <div className="container ">
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-md-0">
+                <div className="row">
+                    <div className="col-lg-3 col-md-6 mb-md-0">
                        
 
-                        <ul class="list-unstyled mb-0">
+                        <ul className="list-unstyled mb-0">
                             <li>
-                                <Link to="/presentation" class="text-light">Presentation</Link>
+                                <Link to="/presentation" className="text-light">Presentation</Link>
                             </li>
                         
                        
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6  mb-md-0">
+                    <div className="col-lg-3 col-md-6  mb-md-0">
                  
 
-                        <ul class="list-unstyled mb-0">
+                        <ul className="list-unstyled mb-0">
                             <li>
-                                <Link to="/explication" href="#!" class="text-light">Explication</Link>
+                                <Link to="/explication" href="#!" className="text-light">Explication</Link>
                             </li>
                        
                         

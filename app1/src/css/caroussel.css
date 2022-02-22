@@ -1,0 +1,15 @@
+
+ .test {
+    padding-left: 500px;
+
+    height : 280px;
+}
+.imgcar {
+   float:left;
+   position : fixed;
+   /* margin-left :60%;  */
+   height : 125px;
+   width : auto;
+
+ 
+} 
