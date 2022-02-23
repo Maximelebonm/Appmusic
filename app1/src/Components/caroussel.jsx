@@ -19,7 +19,7 @@ export function Caroussel(props) {
     let C = document.querySelector('#C');
     let F = document.querySelector('#F');
     let tabimage = [D, E, G, C, Am, F];
-    let tabpartiton = [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1]
+    let tabpartiton = [1, 2, 0, 5, 1, 4, 4, 1, 2, 0, 5, 1, 4, 1]
 
     let cible;
     let jouer;
@@ -159,7 +159,7 @@ export function Caroussel(props) {
 
     const start = (card1, card2) => {
         //boucle sur le tableau 
-        intervalId = setInterval(decrementation, 1000);
+        intervalId = setInterval(decrementation, 700);
     }
 
     return (
