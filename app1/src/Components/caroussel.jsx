@@ -166,8 +166,8 @@ export function Caroussel(props) {
         <>
             <div className="test">
                 <img src={img} name="D" id="D" className="imgcar" />
-                <img src={img2} name="Am" id="Am" className="imgcar" />
-                <img src={img3} name="E" id="E" className="imgcar" />
+                <img src={img2} name="E" id="E" className="imgcar" />
+                <img src={img3} name="Am" id="Am" className="imgcar" />
                 <img src={img4} name="C" id="C" className="imgcar" />
                 <img src={img5} name="G" id="G" className="imgcar" />
                 <img src={img6} name="F" id="F" className="imgcar" />
