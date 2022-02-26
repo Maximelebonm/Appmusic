@@ -1,25 +1,35 @@
 
 import "../css/caroussel.css";
-import img from './img/D.png';
-import img2 from './img/E.png';
-import img3 from './img/Am.png';
-import img4 from './img/G.png';
-import img5 from './img/C.png';
-import img6 from './img/F.png';
+import {useState, useEffect, Component} from "react";
+import { Accord } from "../Models/accord.model";
+
+
+
+// import img from './img/D.png';
+// import img2 from './img/E.png';
+// import img3 from './img/Am.png';
+// import img4 from './img/G.png';
+// import img5 from './img/C.png';
+// import img6 from './img/F.png';
+
 
 export function Caroussel(props) {
+    const { img } = props
 
+    
+    
     let bouton = document.querySelector(".play");
-    // let img = document.getElementsByname("Am")
     let test = 10 + "px";
     let D = document.querySelector('#D');
     let E = document.querySelector('#E');
     let G = document.querySelector('#G');
     let Am = document.querySelector('#Am');
+    let Am2 = document.querySelector('#Am2');
+    let Am3 = document.querySelector('#Am3');
     let C = document.querySelector('#C');
     let F = document.querySelector('#F');
-    let tabimage = [D, E, G, C, Am, F];
-    let tabpartiton = [1, 2, 0, 5, 1, 4, 4, 1, 2, 0, 5, 1, 4, 1]
+    let tabimage = [D, E, G, C, F, Am,Am2,Am3];
+    let tabpartiton = [5, 6, 7, 4, 4, 4, 4, 1, 2, 0, 5, 1, 4, 1]
 
     let cible;
     let jouer;
@@ -29,7 +39,7 @@ export function Caroussel(props) {
     //un compteur pour la carte 1 A=>B puis B=>C C=>D(en seconde) // une fois la carte 1 à C je met la carte 2 à A //boucle for
 
     const animAB = (image) => {
-        let bp;
+
         // cible = document.querySelector(image);
         jouer = image.animate([
             { transform: 'translate(0px)' },
@@ -72,8 +82,7 @@ export function Caroussel(props) {
 
     var intervalId = null;
 
-    let decompte = document.querySelector('.counter')
-        ;
+    let decompte = document.querySelector('.counter');
     // for(let i = 0; i<tabpartiton.length; i++){
     //     tabpartion[i]
     // }
@@ -83,8 +92,8 @@ export function Caroussel(props) {
         counter--;
         // decompte.innerHTML = counter
         //console.log("counter visible : " + counter)
-        if (counter == 16) {
-            if (counterInit == 0) {
+        if (counter === 16) {
+            if (counterInit === 0) {
                 animAB(tabimage[tabpartiton[counterAB]]); //1er index du tabPartition
                 console.log("init1")
                 counterAB++
@@ -97,8 +106,8 @@ export function Caroussel(props) {
                 counterAB++
             }
         }
-        else if (counter == 12) {
-            if (counterInit == 0) {
+        else if (counter === 12) {
+            if (counterInit === 0) {
                 animAB(tabimage[tabpartiton[counterAB]]);     // 2eme index du tabPartition
                 animBC(tabimage[tabpartiton[counterAB - 1]]);   // 1eme index du tabPartiton
                 counterAB++
@@ -113,7 +122,7 @@ export function Caroussel(props) {
                 counterAB++
             }
         }
-        else if (counter == 8) {
+        else if (counter === 8) {
             if (counterAB >= tabpartiton.length - 2) {
                 console.log("fin1")
                 animBC(tabimage[tabpartiton[counterAB - 1]]);          //index de A=>B précédent
@@ -128,7 +137,7 @@ export function Caroussel(props) {
                 counterAB++
             }
         }
-        else if (counter == 4) {
+        else if (counter === 4) {
             if (counterAB >= tabpartiton.length - 1) {
                 console.log("fini2")
                 animCD(tabimage[tabpartiton[counterAB - 2]]);
@@ -140,7 +149,7 @@ export function Caroussel(props) {
                 counterAB++
             }
         }
-        else if (counter == 1) {
+        else if (counter === 1) {
             if (counterAB < tabpartiton.length - 1) {
                 counter = 17;
                 counterInit++;
@@ -160,22 +169,25 @@ export function Caroussel(props) {
     const start = (card1, card2) => {
         //boucle sur le tableau 
         intervalId = setInterval(decrementation, 700);
+        // fetch("http://localhost:5001/accord")
+        // .then(response => console.log("la reponse" + response))
     }
 
-    return (
+   
+    console.log("image caroussel : " + img)
+        return (
         <>
             <div className="test">
-                <img src={img} name="D" id="D" className="imgcar" />
-                <img src={img2} name="E" id="E" className="imgcar" />
-                <img src={img3} name="Am" id="Am" className="imgcar" />
-                <img src={img4} name="C" id="C" className="imgcar" />
-                <img src={img5} name="G" id="G" className="imgcar" />
-                <img src={img6} name="F" id="F" className="imgcar" />
+             
+                <img src={img} name="Am" id="Am" className="imgcar" />
+                <img src={img} name="Am2" id="Am2" className="imgcar" />
+                <img src={img} name="Am3" id="Am3" className="imgcar" />
+        
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>
         </>
-    );
+        );
 
 };
 

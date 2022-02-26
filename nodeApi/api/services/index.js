@@ -1,0 +1,1 @@
+exports.accordservice = require('./accordMajeur.service');

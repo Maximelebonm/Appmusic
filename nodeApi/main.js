@@ -1,3 +1,4 @@
+require("./api/helpers/string.helper")
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -17,6 +18,7 @@ for (const route in routers){
 app.use('/', (req, res)=>{
     res.send("ok")
 });
+app.use('*', (req,res)=> res.send(false));
 
 const PORT = 5001;
 app.listen(PORT, ()=> {
