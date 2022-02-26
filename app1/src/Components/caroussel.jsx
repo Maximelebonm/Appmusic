@@ -2,6 +2,7 @@
 import "../css/caroussel.css";
 import {useState, useEffect, Component} from "react";
 import { Accord } from "../Models/accord.model";
+import { render } from "@testing-library/react";
 
 
 
@@ -13,9 +14,13 @@ import { Accord } from "../Models/accord.model";
 // import img6 from './img/F.png';
 
 
-export function Caroussel(props) {
+class Caroussel extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = { show : false }
+    }
+    
     const { img } = props
-
     
     
     let bouton = document.querySelector(".play");
@@ -175,8 +180,9 @@ export function Caroussel(props) {
 
    
     console.log("image caroussel : " + img)
-        return (
-        <>
+    render(){
+        return 
+        <div>
             <div className="test">
              
                 <img src={img} name="Am" id="Am" className="imgcar" />
@@ -186,8 +192,8 @@ export function Caroussel(props) {
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>
-        </>
-        );
-
+        </div>
+        
+        }
 };
 
