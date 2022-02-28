@@ -54,10 +54,15 @@ export class BaseModel{
             return this;
         }
 
-    get properties(){
-        return JSON.tryParse(JSON.stringify(this));
-    }
+    // get properties(){
+    //     return JSON.tryParse(JSON.stringify(this));
+    // }
 
+    getProps = () => {
+        const properties = JSON.tryParse(JSON.stringify(this));
+        return properties
+    }
+    
     toString(){
         let str = this.constructor.name + "{\n"; 
         for(let key in this.properties){

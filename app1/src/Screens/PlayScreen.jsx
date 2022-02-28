@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Caroussel } from "../Components/Caroussel";
+import { Caroussel } from "../Components/caroussel";
 import { Accord } from "../Models/accord.model";
 
 const PlayScreen = () => {
@@ -11,27 +11,15 @@ const PlayScreen = () => {
             }
             fetchData().catch(console.error);;
         }, []);
-
-    console.log("chemin playscreen : " + accords.chemin)
-    // const [accords, setaccords] = useState([])
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         let data = PlayerGuitare.from(await (await fetch('./data/guitareTab.json')).json());
-    //         console.log(data);
-    //         data = data.filter(item => item.id < 4);
-    //         setaccords(data);
-
-    //     }
-    //     fetchData().catch(console.error);
-    // }, [])
+        
+       console.log("chemin playscreen : ", accords.chemin);
 
 
     return ( 
         <div className="container col-10 mt-3">
             <div className="row bg-dark text-center text-light">
                 <p className="mb-0">ceci est un lecteur</p> 
-                <Caroussel img={accords.chemin}/>
-
+                <Caroussel img = {accords.chemin}/>
             </div>
         </div>
     );

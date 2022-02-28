@@ -3,18 +3,8 @@ import "../css/caroussel.css";
 import {useState, useEffect, Component} from "react";
 import { Accord } from "../Models/accord.model";
 
-
-
-// import img from './img/D.png';
-// import img2 from './img/E.png';
-// import img3 from './img/Am.png';
-// import img4 from './img/G.png';
-// import img5 from './img/C.png';
-// import img6 from './img/F.png';
-
-
 export function Caroussel(props) {
-    const { img } = props
+    const {img} = props;
 
     
     
@@ -29,6 +19,9 @@ export function Caroussel(props) {
     let C = document.querySelector('#C');
     let F = document.querySelector('#F');
     let tabimage = [D, E, G, C, F, Am,Am2,Am3];
+     //TODO faire une fonction qui appel la BDD
+
+    
     let tabpartiton = [5, 6, 7, 4, 4, 4, 4, 1, 2, 0, 5, 1, 4, 1]
 
     let cible;
@@ -169,25 +162,21 @@ export function Caroussel(props) {
     const start = (card1, card2) => {
         //boucle sur le tableau 
         intervalId = setInterval(decrementation, 700);
-        // fetch("http://localhost:5001/accord")
-        // .then(response => console.log("la reponse" + response))
+  
     }
 
    
-    console.log("image caroussel : " + img)
+    console.log("image caroussel : ", img)
         return (
         <>
-            <div className="test">
-             
-                <img src={img} name="Am" id="Am" className="imgcar" />
-                <img src={img} name="Am2" id="Am2" className="imgcar" />
-                <img src={img} name="Am3" id="Am3" className="imgcar" />
-        
+            <div className="test">       
+                <span><img src={img} name="Am" id="Am" className="imgcar" /></span>
+                <span><img src={img} name="Am2" id="Am2" className="imgcar" /></span>
+                <img src={"/img/Am.png"} name="Am3" className="imgcar" />        
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>
         </>
         );
-
 };
 

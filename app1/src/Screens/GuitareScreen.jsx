@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 const GuitareScreen = () => {
     return (
-        <div classNmae="container-fluid">
+    <>
+        <div className="container-fluid">
         <div className="row">
         <div className="col-12 bg-success justify-content-center">
             
@@ -53,6 +54,7 @@ const GuitareScreen = () => {
             </div>
         </div>
         </div>
+    </>
     );
 
 };
