@@ -6,7 +6,17 @@ import { Accord } from "../Models/accord.model";
 export function Caroussel(props) {
     const {img} = props;
 
-    
+            const [accords, setAccords] = useState([])
+        useEffect(() => {
+            const fetchData = async () => {
+                let data = Accord.from(await (await fetch('http://localhost:5001/accord')).json());
+                setAccords(data);
+            }
+            fetchData().catch(console.error);
+        }, []);
+        
+        console.log("chemin playscreen : ", accords);
+        console.log("selection accord : ", accords[0].chemin)
     
     let bouton = document.querySelector(".play");
     let test = 10 + "px";
