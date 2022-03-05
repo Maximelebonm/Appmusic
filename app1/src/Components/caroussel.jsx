@@ -22,7 +22,7 @@ export function Caroussel(props) {
      //TODO faire une fonction qui appel la BDD
 
     
-    let tabpartiton = [5, 6, 7, 4, 4, 4, 4, 1, 2, 0, 5, 1, 4, 1]
+    let tabpartiton = [5, 6, 7, 5, 6, 7, 5, 6, 7, 0, 5, 1, 4, 1]
 
     let cible;
     let jouer;
@@ -172,7 +172,7 @@ export function Caroussel(props) {
             <div className="test">       
                 <span><img src={img} name="Am" id="Am" className="imgcar" /></span>
                 <span><img src={img} name="Am2" id="Am2" className="imgcar" /></span>
-                <img src={"/img/Am.png"} name="Am3" className="imgcar" />        
+                <img src={img} name="Am3" id="Am3" className="imgcar" />        
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>

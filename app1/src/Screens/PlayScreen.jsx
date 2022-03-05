@@ -9,10 +9,10 @@ const PlayScreen = () => {
                 let data = Accord.from(await (await fetch('http://localhost:5001/accord')).json());
                 setAccords(data);
             }
-            fetchData().catch(console.error);;
+            fetchData().catch(console.error);
         }, []);
         
-       console.log("chemin playscreen : ", accords.chemin);
+        console.log("chemin playscreen : ", accords);
 
 
     return ( 

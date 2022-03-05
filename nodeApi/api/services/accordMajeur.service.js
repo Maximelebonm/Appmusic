@@ -7,11 +7,17 @@ class AccordMajeurService extends BaseService {
     //     return rows;
     // }
 
-    get = async (id) => {
+    getOne = async (id) => {
         const sql = `SELECT * FROM ${this.table} WHERE id=${id}`;
         const rows = await BaseService.executeQuery(sql);
         const row = rows.length === 1 ? rows.pop() : null;
         return row;
+      };
+      get = async () => {
+        const sql = `SELECT * FROM ${this.table}`;
+        const rows = await BaseService.executeQuery(sql);
+        // const row = rows.length === 1 ? rows.pop() : null;
+        return rows;
       };
 }
 
