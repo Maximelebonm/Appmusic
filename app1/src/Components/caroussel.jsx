@@ -107,51 +107,51 @@ export function Caroussel(props) {
             }
             else {
                 console.log("boucle1")
-                animAB(tabimage[tabpartiton[counterAB]]);    //nouvel index       
-                animBC(tabimage[tabpartiton[counterAB - 1]]);  //index de A=>B précédent
-                animCD(tabimage[tabpartiton[counterAB - 2]]); // index de B=>C précédent  
+                animAB(tabLink[counterAB]);    //nouvel index       
+                animBC(tabLink[counterAB - 1]);  //index de A=>B précédent
+                animCD(tabLink[counterAB - 2]); // index de B=>C précédent  
                 counterAB++
             }
         }
         else if (counter === 12) {
             if (counterInit === 0) {
-                animAB(tabimage[tabpartiton[counterAB]]);     // 2eme index du tabPartition
-                animBC(tabimage[tabpartiton[counterAB - 1]]);   // 1eme index du tabPartiton
+                animAB(tabLink[counterAB]);     // 2eme index du tabPartition
+                animBC(tabLink[counterAB - 1]);   // 1eme index du tabPartiton
                 counterAB++
                 console.log("init2")
             }
             else {
                 console.log("boucle2")
-                animAB(tabimage[tabpartiton[counterAB]]);            //nouvel index
-                animBC(tabimage[tabpartiton[counterAB - 1]]);          //index de A=>B précédent
-                animCD(tabimage[tabpartiton[counterAB - 2]]);          // index de B=>C précédent
+                animAB(tabLink[counterAB]);            //nouvel index
+                animBC(tabLink[counterAB - 1]);          //index de A=>B précédent
+                animCD(tabLink[counterAB - 2]);          // index de B=>C précédent
                 counterAB++
             }
         }
         else if (counter === 8) {
             if (counterAB >= tabpartiton.length - 2) {
                 console.log("fin1")
-                animBC(tabimage[tabpartiton[counterAB - 1]]);          //index de A=>B précédent
-                animCD(tabimage[tabpartiton[counterAB - 2]]);           //index de B=>C précédent
+                animBC(tabLink[counterAB - 1]);          //index de A=>B précédent
+                animCD(tabLink[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
 
             }
             else {
-                animAB(tabimage[tabpartiton[counterAB]]);
-                animBC(tabimage[tabpartiton[counterAB - 1]]);
-                animCD(tabimage[tabpartiton[counterAB - 2]]);
+                animAB(tabLink[counterAB]);
+                animBC(tabLink[counterAB - 1]);
+                animCD(tabLink[counterAB - 2]);
                 counterAB++
             }
         }
         else if (counter === 4) {
             if (counterAB >= tabpartiton.length - 1) {
                 console.log("fini2")
-                animCD(tabimage[tabpartiton[counterAB - 2]]);
+                animCD(tabLink[counterAB - 2]);
             }
             else {
-                animAB(tabimage[tabpartiton[counterAB]]);
-                animBC(tabimage[tabpartiton[counterAB - 1]]);
-                animCD(tabimage[tabpartiton[counterAB - 2]]);
+                animAB(tabLink[counterAB]);
+                animBC(tabLink[counterAB - 1]);
+                animCD(tabLink[counterAB - 2]);
                 counterAB++
             }
         }
@@ -170,12 +170,13 @@ export function Caroussel(props) {
         }
         // })
     }
+    console.log("counterAB : ", tabLink[counterAB])
     let imagetest1;
     let imagetest2;
     let imagetest3;
     const start = (card1, card2) => {
         //boucle sur le tableau 
-        imagetest1 = tabLink[0] 
+        //imagetest1 = tabLink[0] 
         
         intervalId = setInterval(decrementation, 700);
         
@@ -186,9 +187,9 @@ export function Caroussel(props) {
     return (
         <>
             <div className="test">       
-                <span><img src={tabLink[0]} name="Am" id="image1" className="imgcar" /></span>
-                <span><img src={tabLink[2]} name="Am2" id="image2" className="imgcar" /></span>
-                <span><img src={accords[tabpartiton[2]]?.chemin} name="Am3" id="image3" className="imgcar" /></span>        
+               <img src={tabLink[counterAB]} name="Am" id="image1" className="imgcar" />
+               <img src={tabLink[counterAB - 1]} name="Am2" id="image2" className="imgcar" />
+                <img src={tabLink[counterAB - 2]} name="Am3" id="image3" className="imgcar" />      
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>
