@@ -7,7 +7,8 @@ import { Accord } from "../Models/accord.model";
 
 export function Caroussel(props) {
 
-    const {img} = props;   
+    const {img} = props; 
+
     const [accords, setAccords] = useState([])
     useEffect(() => {
         const fetchData = async () => {
@@ -51,9 +52,6 @@ export function Caroussel(props) {
     //filter , soit des getOne 
     let cible;
     let jouer;
-
-    //tableau d'evenement ; animation parametre (); timeout il regarde dans le tableau si il y a une animation a faire
-    //[declencheur devenement {animationIn}{animationInandout}{animationnout}] 
 
     const animAB = (image) => {
 
