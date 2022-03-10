@@ -17,6 +17,7 @@ export function Caroussel(props) {
             console.log("fetch")
         }
         fetchData()
+        
     }, []);         
 
     let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
