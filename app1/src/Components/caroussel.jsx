@@ -18,10 +18,21 @@ export function Caroussel(props) {
         fetchData()
     }, []);         
 
-    // verifier le chemin, découper le code, switch case
-    // console.log("selection accord : ", accords[0].chemin)
+    let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
+    let tabLink = []
+
+    const link = () => {
+        for (let i=0 ; i < tabpartiton.length ; i++){
+           let lien = accords[tabpartiton[i]]?.chemin
+           tabLink.push(lien)
+           console.log("lien : ", lien)
+        }
+    }
+    link()
+    console.log("lien : ", tabLink)
+
+
     let bouton = document.querySelector(".play");
-    let test = 10 + "px";
     let image1 = document.querySelector('#image1');
     let image2 = document.querySelector('#image2');
     let image3 = document.querySelector('#image3');
@@ -30,19 +41,8 @@ export function Caroussel(props) {
 
      console.log("tabimage : ", tabimage)
 
-    let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2]
-    let tabLink = []
     
     let countersource = 0
- const link = () => {
-     for (let i=0 ; i < tabpartiton.length ; i++){
-        let lien = accords[tabpartiton[i]]?.chemin
-        tabLink.push(lien)
-        console.log("lien : ", lien)
-     }
- }
- link()
- console.log("lien : ", tabLink)
 
      
     // tabpartiton.forEach(item => {
@@ -101,7 +101,7 @@ export function Caroussel(props) {
         //console.log("counter visible : " + counter)
         if (counter === 16) {
             if (counterInit === 0) {
-                animAB(tabimage[tabpartiton[counterAB]]); //1er index du tabPartition
+                animAB(tabLink[counterAB]); //1er index du tabPartition
                 console.log("init1")
                 counterAB++
             }
@@ -170,10 +170,15 @@ export function Caroussel(props) {
         }
         // })
     }
+    let imagetest1;
+    let imagetest2;
+    let imagetest3;
     const start = (card1, card2) => {
         //boucle sur le tableau 
+        imagetest1 = tabLink[0] 
+        
         intervalId = setInterval(decrementation, 700);
-        console.log("selection accord : ", accords[tabpartiton[1]]?.chemin)     
+        
     }
    
     console.log("return")
@@ -181,8 +186,8 @@ export function Caroussel(props) {
     return (
         <>
             <div className="test">       
-                <span><img src={accords[tabpartiton[0]]?.chemin} name="Am" id="image1" className="imgcar" /></span>
-                <span><img src={accords[tabpartiton[1]]?.chemin} name="Am2" id="image2" className="imgcar" /></span>
+                <span><img src={tabLink[0]} name="Am" id="image1" className="imgcar" /></span>
+                <span><img src={tabLink[2]} name="Am2" id="image2" className="imgcar" /></span>
                 <span><img src={accords[tabpartiton[2]]?.chemin} name="Am3" id="image3" className="imgcar" /></span>        
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
