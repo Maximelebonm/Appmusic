@@ -11,7 +11,11 @@ export function Caroussel(props) {
 
     const [accords, setAccords] = useState([]);
     const [loadingState, setLoadingState] = useState('loading');
-    const [cooldown, setCooldown] = useState(5);
+    const [tabLinkAcc, setTabLinkAcc] = useState([]);
+    const [startBtn, setStartBtn] = useState()
+
+    const [index, setIndex] = useState(0);
+    const [currentProduct, setCurrentProduct] = useState();
 
     //setgame avec link et current
     //state Partition
@@ -19,22 +23,22 @@ export function Caroussel(props) {
     //autres states waiting(si 5sec passer et pas charger)
     //stateReady (5sec passer et tt charger)
     //state deconnected
+
     useEffect(() => {
         const fetchData = async () => {
             let data = await (await fetch('http://localhost:5001/accord')).json();
             setAccords(data);
             console.log("fetch")
         }
-        fetchData().then(data => { 
+        fetchData()
+        .then(data => { 
+        console.log("accord : ", accords)
 
         let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
-        
-        let tabLink = []
-
         const link = () => {
             for (let i = 0; i < tabpartiton.length; i++) {
                 let lien = accords[tabpartiton[i]]?.chemin
-                tabLink.push(lien)
+                tabLinkAcc.push(lien)
                 console.log("lien : ", lien)
             }
         }
@@ -42,6 +46,7 @@ export function Caroussel(props) {
 
         let cible;
         let jouer;
+        
         const animAB = (image) => {
 
             // cible = document.querySelector(image);
@@ -72,10 +77,8 @@ export function Caroussel(props) {
         };
         function finish() {
             clearInterval(intervalId);
-
         };
-
-        var intervalId = null;
+ 
         var counter = 17;
         let counterInit = 0
         let counterAB = 0
@@ -86,57 +89,57 @@ export function Caroussel(props) {
             //console.log("counter visible : " + counter)
             if (counter === 16) {
                 if (counterInit === 0) {
-                    animAB(tabLink[counterAB]); //1er index du tabPartition
+                    animAB(tabLinkAcc[counterAB]); //1er index du tabPartition
                     console.log("init1")
                     counterAB++
                 }
                 else {
                     console.log("boucle1")
-                    animAB(tabLink[counterAB]);    //nouvel index       
-                    animBC(tabLink[counterAB - 1]);  //index de A=>B précédent
-                    animCD(tabLink[counterAB - 2]); // index de B=>C précédent  
+                    animAB(tabLinkAcc[counterAB]);    //nouvel index       
+                    animBC(tabLinkAcc[counterAB - 1]);  //index de A=>B précédent
+                    animCD(tabLinkAcc[counterAB - 2]); // index de B=>C précédent  
                     counterAB++
                 }
             }
             else if (counter === 12) {
                 if (counterInit === 0) {
-                    animAB(tabLink[counterAB]);     // 2eme index du tabPartition
-                    animBC(tabLink[counterAB - 1]);   // 1eme index du tabPartiton
+                    animAB(tabLinkAcc[counterAB]);     // 2eme index du tabPartition
+                    animBC(tabLinkAcc[counterAB - 1]);   // 1eme index du tabPartiton
                     counterAB++
                     console.log("init2")
                 }
                 else {
                     console.log("boucle2")
-                    animAB(tabLink[counterAB]);            //nouvel index
-                    animBC(tabLink[counterAB - 1]);          //index de A=>B précédent
-                    animCD(tabLink[counterAB - 2]);          // index de B=>C précédent
+                    animAB(tabLinkAcc[counterAB]);            //nouvel index
+                    animBC(tabLinkAcc[counterAB - 1]);          //index de A=>B précédent
+                    animCD(tabLinkAcc[counterAB - 2]);          // index de B=>C précédent
                     counterAB++
                 }
             }
             else if (counter === 8) {
                 if (counterAB >= tabpartiton.length - 2) {
                     console.log("fin1")
-                    animBC(tabLink[counterAB - 1]);          //index de A=>B précédent
-                    animCD(tabLink[counterAB - 2]);           //index de B=>C précédent
+                    animBC(tabLinkAcc[counterAB - 1]);          //index de A=>B précédent
+                    animCD(tabLinkAcc[counterAB - 2]);           //index de B=>C précédent
                     counterAB++
 
                 }
                 else {
-                    animAB(tabLink[counterAB]);
-                    animBC(tabLink[counterAB - 1]);
-                    animCD(tabLink[counterAB - 2]);
+                    animAB(tabLinkAcc[counterAB]);
+                    animBC(tabLinkAcc[counterAB - 1]);
+                    animCD(tabLinkAcc[counterAB - 2]);
                     counterAB++
                 }
             }
             else if (counter === 4) {
                 if (counterAB >= tabpartiton.length - 1) {
                     console.log("fini2")
-                    animCD(tabLink[counterAB - 2]);
+                    animCD(tabLinkAcc[counterAB - 2]);
                 }
                 else {
-                    animAB(tabLink[counterAB]);
-                    animBC(tabLink[counterAB - 1]);
-                    animCD(tabLink[counterAB - 2]);
+                    animAB(tabLinkAcc[counterAB]);
+                    animBC(tabLinkAcc[counterAB - 1]);
+                    animCD(tabLinkAcc[counterAB - 2]);
                     counterAB++
                 }
             }
@@ -155,44 +158,37 @@ export function Caroussel(props) {
             }
             // })
         }
-        
-        const start = (card1, card2) => {
-            //boucle sur le tableau 
-            //imagetest1 = tabLink[0]   
+
+        var intervalId = null;
+        const start = (card1, card2) => {  
             intervalId = setInterval(decrementation, 700);
-    
         }
+    
         setLoadingState('Ready')
-    })
+
     .catch(console.log())
+    })
     }, []);
 
     // console.log("lien : ", tabLink)
-
-
     // let bouton = document.querySelector(".play");
     // let image1 = document.querySelector('#image1');
     // let image2 = document.querySelector('#image2');
     // let image3 = document.querySelector('#image3');
     // let tabimage = [image1, image2, image3];
     //TODO faire une fonction qui appel la BDD
-
     // console.log("tabimage : ", tabimage)
-
-
     // let countersource = 0
-
-
     // tabpartiton.forEach(item => {
     //     image1 = tabpartiton[item]
     // });
     //filter , soit des getOne 
-   
     // let decompte = document.querySelector('.counter');
 
     // console.log("counterAB : ", tabLink[counterAB])
- 
 
+ 
+    console.log('TabLinkAcc : ',tabLinkAcc)
     console.log("BOUCLE RETURN")
     if (loadingState == 'loading') {
         console.log("1er return")
@@ -202,7 +198,7 @@ export function Caroussel(props) {
             </>
         )
     }
-    else if(loadingState == 'Ready') {
+    else if(loadingState == 'Ready'){
         console.log("2nd return")
         return (
             <>
@@ -216,6 +212,5 @@ export function Caroussel(props) {
             </>
         );
     }
-
 };
 
