@@ -1,39 +1,43 @@
 
 import "../css/caroussel.css";
-import {useState, useEffect, Component} from "react";
+import {useState, useEffect, Component, Fragment} from "react";
 import { Accord } from "../Models/accord.model";
+//import { FetchAccord } from "../Components/fetchaccord";
+
 
 export function Caroussel(props) {
-    const {img} = props;
 
-            const [accords, setAccords] = useState([])
-        useEffect(() => {
-            const fetchData = async () => {
-                let data = Accord.from(await (await fetch('http://localhost:5001/accord')).json());
-                setAccords(data);
-            }
-            fetchData().catch(console.error);
-        }, []);
-        
-        console.log("chemin playscreen : ", accords);
-        console.log("selection accord : ", accords[0].chemin)
-    
+    const {img} = props;   
+    const [accords, setAccords] = useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+            let data = await (await fetch('http://localhost:5001/accord')).json();
+            setAccords(data);
+            console.log("fetch")
+        }
+        fetchData()
+    }, []);         
+
+    // verifier le chemin, découper le code, switch case
+    // console.log("selection accord : ", accords[0].chemin)
     let bouton = document.querySelector(".play");
     let test = 10 + "px";
-    let D = document.querySelector('#D');
-    let E = document.querySelector('#E');
-    let G = document.querySelector('#G');
-    let Am = document.querySelector('#Am');
-    let Am2 = document.querySelector('#Am2');
-    let Am3 = document.querySelector('#Am3');
-    let C = document.querySelector('#C');
-    let F = document.querySelector('#F');
-    let tabimage = [D, E, G, C, F, Am,Am2,Am3];
+    let image1 = document.querySelector('#image1');
+    let image2 = document.querySelector('#image2');
+    let image3 = document.querySelector('#image3');
+    let tabimage = [image1,image2,image3];
      //TODO faire une fonction qui appel la BDD
 
-    
-    let tabpartiton = [5, 6, 7, 5, 6, 7, 5, 6, 7, 0, 5, 1, 4, 1]
+     console.log("tabimage : ", tabimage)
 
+    let tabpartiton = [0, 1, 2, 0, 1, 2]
+    
+    let countersource = 0
+
+    // tabpartiton.forEach(item => {
+    //     image1 = tabpartiton[item]
+    // });
+    //filter , soit des getOne 
     let cible;
     let jouer;
 
@@ -51,7 +55,6 @@ export function Caroussel(props) {
         ], 2000);
         image.style.transform = 'translate(-200px)'
     };
-
     function animBC(image) {
         // cible = document.querySelector(image);
         jouer = image.animate([
@@ -61,7 +64,6 @@ export function Caroussel(props) {
         ], 1000);
         image.style.transform = 'translate(-300px, 0px)'
     };
-
     function animCD(image) {
         //cible = document.querySelector(image);
         jouer = image.animate([
@@ -71,24 +73,16 @@ export function Caroussel(props) {
         ], 2000);
         image.style.transform = 'translate(-1200px, 0px)'
     };
-
     function finish() {
         clearInterval(intervalId);
-        animAB();
-    }
-    //boucle selectionCard
+      
+    };
 
     var counter = 17;
     let counterInit = 0
-    let counterEnd = 0
     let counterAB = 0
-
     var intervalId = null;
-
     let decompte = document.querySelector('.counter');
-    // for(let i = 0; i<tabpartiton.length; i++){
-    //     tabpartion[i]
-    // }
 
     function decrementation() {
         // tabimage.forEach(item => {
@@ -115,7 +109,6 @@ export function Caroussel(props) {
                 animBC(tabimage[tabpartiton[counterAB - 1]]);   // 1eme index du tabPartiton
                 counterAB++
                 console.log("init2")
-
             }
             else {
                 console.log("boucle2")
@@ -156,7 +149,6 @@ export function Caroussel(props) {
             if (counterAB < tabpartiton.length - 1) {
                 counter = 17;
                 counterInit++;
-                counterEnd++;
             }
             else {
                 finish()
@@ -168,21 +160,20 @@ export function Caroussel(props) {
         }
         // })
     }
-
     const start = (card1, card2) => {
         //boucle sur le tableau 
         intervalId = setInterval(decrementation, 700);
-  
+        console.log("selection accord : ", accords[tabpartiton[1]]?.chemin)     
     }
-
    
-    console.log("image caroussel : ", img)
-        return (
+    console.log("return")
+
+    return (
         <>
             <div className="test">       
-                <span><img src={img} name="Am" id="Am" className="imgcar" /></span>
-                <span><img src={img} name="Am2" id="Am2" className="imgcar" /></span>
-                <img src={img} name="Am3" id="Am3" className="imgcar" />        
+                <span><img src={accords[tabpartiton[0]]?.chemin} name="Am" id="image1" className="imgcar" /></span>
+                <span><img src={accords[tabpartiton[1]]?.chemin} name="Am2" id="image2" className="imgcar" /></span>
+                <span><img src={accords[tabpartiton[2]]?.chemin} name="Am3" id="image3" className="imgcar" /></span>        
             </div>
             <button className="btn btn-danger col-6" onClick={start}>play</button>
             <button className="btn btn-danger col-6" onClick={finish}>pause</button>
