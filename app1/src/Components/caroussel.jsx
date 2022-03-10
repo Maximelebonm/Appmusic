@@ -30,10 +30,21 @@ export function Caroussel(props) {
 
      console.log("tabimage : ", tabimage)
 
-    let tabpartiton = [0, 1, 2, 0, 1, 2]
+    let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2]
+    let tabLink = []
     
     let countersource = 0
+ const link = () => {
+     for (let i=0 ; i < tabpartiton.length ; i++){
+        let lien = accords[tabpartiton[i]]?.chemin
+        tabLink.push(lien)
+        console.log("lien : ", lien)
+     }
+ }
+ link()
+ console.log("lien : ", tabLink)
 
+     
     // tabpartiton.forEach(item => {
     //     image1 = tabpartiton[item]
     // });
@@ -43,7 +54,6 @@ export function Caroussel(props) {
 
     //tableau d'evenement ; animation parametre (); timeout il regarde dans le tableau si il y a une animation a faire
     //[declencheur devenement {animationIn}{animationInandout}{animationnout}] 
-    //un compteur pour la carte 1 A=>B puis B=>C C=>D(en seconde) // une fois la carte 1 à C je met la carte 2 à A //boucle for
 
     const animAB = (image) => {
 
