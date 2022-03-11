@@ -12,9 +12,9 @@ export function Caroussel(props) {
     const [loadingState, setLoadingState] = useState('loading');
     console.log("entre les usestate")
     const [accords, setAccords] = useState([]);
-    //const [tabLinkAcc, setTabLinkAcc] = useState([]);
+    const [tabLinkAcc, setTabLinkAcc] = useState([]);
     const [startBtn, setStartBtn] = useState();
-    const [session, setSession] = useState({})
+    const [session, setSession] = useState({state:'loading', tabLinkAcc:[],})
 
     // const [index, setIndex] = useState(0);
     // const [currentProduct, setCurrentProduct] = useState();
@@ -51,7 +51,7 @@ export function Caroussel(props) {
         fetchData().then(sess => { 
         console.log(sess)
 
-        let tabpartiton = [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
+        let tabpartiton = [2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
 
         let tabLink = [];
         
@@ -103,7 +103,7 @@ export function Caroussel(props) {
         let counterInit = 0
         let counterAB = 0
 
-        function decrementation() {
+        function decompte() {
             // tabimage.forEach(item => {
             counter--;
             // decompte.innerHTML = counter
@@ -183,20 +183,148 @@ export function Caroussel(props) {
         var intervalId = null;
 
         const start = (card1, card2) => {  
-            intervalId = setInterval(decrementation, 700);
+            intervalId = setInterval(decompte, 700);
         }
     
         console.log("Fin de UseEffect");
+        //setTabLinkAcc(tabLink)
+        setSession({
+          tabLinkAcc:tabLink, 
+          state:'ready',
+          //accord,current,partition,state(loading)(ready)(pause)(stop)
+         })
     })
     .catch(console.log())
-    setLoadingState('Ready')
-      //setSession({
-        //accord,current,partition,state(loading)(ready)(pause)(stop)
-    //   })
+    //setLoadingState('Ready')
     }, []);
 
+    
+    function startGame() {
+        console.log('startgame')
+    let cible;
+    let jouer;
+    const animAB = (image) => {
+        jouer = image.animate([
+            { transform: 'translate(0px)' },
+            { transform: 'translate(-200px)' },
+            { transform: 'translate(-200px)' },
+        ], 2000);
+        image.style.transform = 'translate(-200px)'
+    };
+    function animBC(image) {
+        // cible = document.querySelector(image);
+        jouer = image.animate([
+            { transform: 'translate(-200px)' },
+            { transform: 'translate(-300px, 0px)' },
+            { transform: 'translate(-300px , 0px)' },
+        ], 1000);
+        image.style.transform = 'translate(-300px, 0px)'
+    };
+    function animCD(image) {
+        //cible = document.querySelector(image);
+        jouer = image.animate([
+            { transform: 'translate(-300px)' },
+            { transform: 'translate(-1200px, 0px)' },
+            { transform: 'translate(-1200px , 0px)' },
+        ], 2000);
+        image.style.transform = 'translate(-1200px, 0px)'
+    };
+
+    function finish() {
+        clearInterval(intervalId);
+    };
+
+    var counter = 17;
+    let counterInit = 0
+    let counterAB = 0
+
+    function decompte() {
+        // tabimage.forEach(item => {
+        counter--;
+        // decompte.innerHTML = counter
+        //console.log("counter visible : " + counter)
+        if (counter === 16) {
+            if (counterInit === 0) {
+                animAB(tabLinkAcc[counterAB]); //1er index du tabPartition
+                console.log("init1")
+                counterAB++
+            }
+            else {
+                console.log("boucle1")
+                animAB(tabLinkAcc[counterAB]);    //nouvel index       
+                animBC(tabLinkAcc[counterAB - 1]);  //index de A=>B précédent
+                animCD(tabLinkAcc[counterAB - 2]); // index de B=>C précédent  
+                counterAB++
+            }
+        }
+        else if (counter === 12) {
+            if (counterInit === 0) {
+                animAB(tabLinkAcc[counterAB]);     // 2eme index du tabPartition
+                animBC(tabLinkAcc[counterAB - 1]);   // 1eme index du tabPartiton
+                counterAB++
+                console.log("init2")
+            }
+            else {
+                console.log("boucle2")
+                animAB(tabLinkAcc[counterAB]);            //nouvel index
+                animBC(tabLinkAcc[counterAB - 1]);          //index de A=>B précédent
+                animCD(tabLinkAcc[counterAB - 2]);          // index de B=>C précédent
+                counterAB++
+            }
+        }
+        else if (counter === 8) {
+            if (counterAB >= tabLinkAcc.length - 2) {
+                console.log("fin1")
+                animBC(tabLinkAcc[counterAB - 1]);          //index de A=>B précédent
+                animCD(tabLinkAcc[counterAB - 2]);           //index de B=>C précédent
+                counterAB++
+
+            }
+            else {
+                animAB(tabLinkAcc[counterAB]);
+                animBC(tabLinkAcc[counterAB - 1]);
+                animCD(tabLinkAcc[counterAB - 2]);
+                counterAB++
+            }
+        }
+        else if (counter === 4) {
+            if (counterAB >= tabLinkAcc.length - 1) {
+                console.log("fini2")
+                animCD(tabLinkAcc[counterAB - 2]);
+            }
+            else {
+                animAB(tabLinkAcc[counterAB]);
+                animBC(tabLinkAcc[counterAB - 1]);
+                animCD(tabLinkAcc[counterAB - 2]);
+                counterAB++
+            }
+        }
+        else if (counter === 1) {
+            if (counterAB < tabLinkAcc.length - 1) {
+                counter = 17;
+                counterInit++;
+            }
+            else {
+                finish()
+            }
+        }
+
+        else {
+            console.log("ok");
+        }
+        // })
+    }
+
+    var intervalId = null;
+
+    const start = (card1, card2) => {  
+        intervalId = setInterval(decompte, 700);
+    }
+}
+
+
     console.log("avant les return")
-    if (loadingState == 'loading') {
+    if (session.state == 'loading') {
         console.log("1er return")
         return (
             <>
@@ -204,19 +332,19 @@ export function Caroussel(props) {
             </>
         )
     }
-    else if(loadingState == 'ok'){
+    else if(session.state == 'ready'){
 
         console.log("2nd return")
         return (
             <>
             <div>terminé</div>
             <div className="test">
-                <img src={tabLink[counterAB]} name="Am" id="image1" className="imgcar" />
-                <img src={tabLink[counterAB - 1]} name="Am2" id="image2" className="imgcar" />
-                <img src={tabLink[counterAB - 2]} name="Am3" id="image3" className="imgcar" />
+                <img src={tabLinkAcc[0]} name="Am" id="image1" className="imgcar" />
+                <img src={tabLinkAcc[1]} name="Am2" id="image2" className="imgcar" />
+                <img src={tabLinkAcc[2]} name="Am3" id="image3" className="imgcar" />
             </div>
-            <button className="btn btn-danger col-6" onClick={startBtn}>play</button>
-            <button className="btn btn-danger col-6" onClick={finish}>pause</button>
+            <button className="btn btn-danger col-6" onClick={startGame}>play</button>
+            <button className="btn btn-danger col-6" onClick={startGame}>pause</button>
             </>
         );
     }
