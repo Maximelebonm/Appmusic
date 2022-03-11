@@ -317,11 +317,12 @@ export function Caroussel(props) {
 
     var intervalId = null;
 
-    const start = (card1, card2) => {  
-        intervalId = setInterval(decompte, 700);
-    }
-}
+    // const start = (card1, card2) => {  
+    //     intervalId = setInterval(decompte, 700);
+    // }
 
+        intervalId = setInterval(decompte, 700);
+}
 
     console.log("avant les return")
     if (session.state == 'loading') {
@@ -332,6 +333,7 @@ export function Caroussel(props) {
             </>
         )
     }
+    //todo mettre image tout les 3 temps, faire les currents.
     else if(session.state == 'ready'){
 
         console.log("2nd return")
@@ -339,6 +341,7 @@ export function Caroussel(props) {
             <>
             <div>terminé</div>
             <div className="test">
+                
                 <img src={tabLinkAcc[0]} name="Am" id="image1" className="imgcar" />
                 <img src={tabLinkAcc[1]} name="Am2" id="image2" className="imgcar" />
                 <img src={tabLinkAcc[2]} name="Am3" id="image3" className="imgcar" />
