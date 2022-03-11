@@ -58,7 +58,7 @@ export function Caroussel(props) {
         const link = () => {            
                 for (let i = 0; i < tabpartiton.length; i++) {         
                     let lien = sess.dataAccords[tabpartiton[i]]?.chemin
-                    tabLink.push(lien)
+                    tabLink.push(letlien)
                 }
             }        
         link()
@@ -75,8 +75,7 @@ export function Caroussel(props) {
     .catch(console.log())
     //setLoadingState('Ready')
     }, []);
-
-    
+ 
     function startGame() {
     console.log('startgame')
     let jouer;
@@ -184,17 +183,13 @@ export function Caroussel(props) {
                 finish()
             }
         }
-
         else {
             console.log("ok");
         }
-    }
-
-    
+    }   
     let intervalId = null;
     intervalId = setInterval(decompte, 700);
 }
-
 
 let image1 = document.getElementById('#image1');
 let image2 = document.getElementById('#image2');
@@ -202,7 +197,7 @@ let image3 = document.getElementById('#image3');
 let tabHtml = [image1, image2, image3]
 
     console.log("avant les return")
-    if (session.state == 'loading') {
+    if(session.state == 'loading') {
         console.log("1er return")
         return (
             <>
@@ -210,19 +205,17 @@ let tabHtml = [image1, image2, image3]
             </>
         )
     }
-    //todo mettre image tout les 3 temps, faire les currents.
     else if(session.state == 'ready'){
         console.log("2nd return")
         console.log("tabLink 2nd retur : ", session.tabLinkAcc)
         return (
             <>
             <div>terminé</div>
-            <div className="test">
-                
-                <img src={session.tabLinkAcc[0]} name="image1" id="image1" className="imgcar" />
-                <img src={session.tabLinkAcc[1]} name="image2" id="image2" className="imgcar" />
-                <img src={session.tabLinkAcc[2]} name="image3" id="image3" className="imgcar" />
-            </div>
+                <div className="test">               
+                    <img src={session.tabLinkAcc[0]} name="image1" id="image1" className="imgcar" />
+                    <img src={session.tabLinkAcc[1]} name="image2" id="image2" className="imgcar" />
+                    <img src={session.tabLinkAcc[2]} name="image3" id="image3" className="imgcar" />
+                </div>
             <button className="btn btn-danger col-6" onClick={startGame}>play</button>
             <button className="btn btn-danger col-6" onClick={startGame}>pause</button>
             </>
