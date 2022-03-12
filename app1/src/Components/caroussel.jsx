@@ -67,31 +67,32 @@ export function Caroussel(props) {
     function startGame() {
     console.log('startgame')
     let jouer;
+    //resize on window
     const animAB = (image) => {
         jouer = image.animate([
             { transform: 'translate(0px)' },
-            { transform: 'translate(-200px)' },
-            { transform: 'translate(-200px)' },
+            { transform: 'translate(-48%)' },
+            { transform: 'translate(-50%)' },
         ], 2000);
-        image.style.transform = 'translate(-200px)'
+        image.style.transform = 'translate(-50%)'
     };
     function animBC(image) {
         // cible = document.querySelector(image);
         jouer = image.animate([
-            { transform: 'translate(-200px)' },
-            { transform: 'translate(-300px, 0px)' },
-            { transform: 'translate(-300px , 0px)' },
+            { transform: 'translate(-50%)' },
+            { transform: 'translate(-55%)' },
+            { transform: 'translate(-55%)' },
         ], 1000);
-        image.style.transform = 'translate(-300px, 0px)'
+        image.style.transform = 'translate(-55%)'
     };
     function animCD(image) {
         //cible = document.querySelector(image);
         jouer = image.animate([
-            { transform: 'translate(-300px)' },
-            { transform: 'translate(-1200px, 0px)' },
-            { transform: 'translate(-1200px , 0px)' },
+            { transform: 'translate(-55%)' },
+            { transform: 'translate(-100%)' },
+            { transform: 'translate(-100%)' },
         ], 2000);
-        image.style.transform = 'translate(-1200px, 0px)'
+        image.style.transform = 'translate(-100%)'
     };
     function finish() {
         clearInterval(intervalId);
