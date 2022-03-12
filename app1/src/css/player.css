@@ -1,0 +1,13 @@
+.playerMain{
+    background-color: beige;
+    text-align: center;
+}
+.playerSecond{
+    background-color: rgb(53, 104, 124) ;
+    height : 40px;
+    color : white;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    
+}
