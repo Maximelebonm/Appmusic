@@ -7,7 +7,7 @@ const BaseScreen = () => {
     return (
         <>
             <Header />
-            <main className="container">
+            <main className="main">
             <Outlet />
             </main>
             <Footer />

@@ -20,21 +20,22 @@ export function Caroussel(props) {
         const fetchData = async () => {
             console.log("fetch")
             let dataAccords = await (await fetch('http://localhost:5001/accord')).json();
-            let data2 = await (await fetch('http://localhost:5001/accord')).json();
+            let data2 = await (await fetch('http://localhost:5001/musique')).json();
             return {dataAccords, data2} 
             //setAccords(data);         
         }
         fetchData().then(sess => { 
-        console.log(sess)
+        console.log(sess.data2[0].musiqueAccord)
 
-        let tabpartiton = [2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
+        let tabpartiton = sess.data2[0].musiqueAccord
+
 
         let tabLink = [];
         let tabImgs = [];
         
         const link = () => {            
                 for (let i = 0; i < tabpartiton.length; i++) {         
-                    let lien = sess.dataAccords[tabpartiton[i]]?.chemin
+                    let lien = sess.dataAccords[tabpartiton[i]-1]?.chemin
                     // genere variable
                     tabLink.push(lien)
                 }
@@ -64,35 +65,35 @@ export function Caroussel(props) {
     //setLoadingState('Ready')
     }, []);
  
-    function startGame() {
-    console.log('startgame')
+  
+    console.log('startgame');
     let jouer;
-    //resize on window
+    //resize on window //heroku
     const animAB = (image) => {
         jouer = image.animate([
             { transform: 'translate(0px)' },
-            { transform: 'translate(-48%)' },
-            { transform: 'translate(-50%)' },
-        ], 2000);
-        image.style.transform = 'translate(-50%)'
+            { transform: 'translate(-600px)' },
+            { transform: 'translate(-600px)' },
+        ], 1500);
+        image.style.transform = 'translate(-600px)'
     };
     function animBC(image) {
         // cible = document.querySelector(image);
         jouer = image.animate([
-            { transform: 'translate(-50%)' },
-            { transform: 'translate(-55%)' },
-            { transform: 'translate(-55%)' },
+            { transform: 'translate(-600px)' },
+            { transform: 'translate(-860px)' },
+            { transform: 'translate(-860px)' },
         ], 1000);
-        image.style.transform = 'translate(-55%)'
+        image.style.transform = 'translate(-860px)'
     };
     function animCD(image) {
         //cible = document.querySelector(image);
         jouer = image.animate([
-            { transform: 'translate(-55%)' },
-            { transform: 'translate(-100%)' },
-            { transform: 'translate(-100%)' },
+            { transform: 'translate(-860px)' },
+            { transform: 'translate(-1560px)' },
+            { transform: 'translate(-1560px)' },
         ], 2000);
-        image.style.transform = 'translate(-100%)'
+        image.style.transform = 'translate(-1560px)'
     };
     function finish() {
         clearInterval(intervalId);
@@ -101,6 +102,7 @@ export function Caroussel(props) {
     let counter = 17;
     let counterInit = 0
     let counterAB = 0
+    let counterDepart = 4
 
     function decompte() {
         // tabimage.forEach(item => {
@@ -113,6 +115,8 @@ export function Caroussel(props) {
                 animAB(session.tabImgs[counterAB]); //1er index du tabPartition
                 console.log("init1")
                 counterAB++
+                counterDepart--
+
             }
             else {
                 console.log("boucle1")
@@ -127,6 +131,7 @@ export function Caroussel(props) {
                 animAB(session.tabImgs[counterAB]);     // 2eme index du tabPartition
                 animBC(session.tabImgs[counterAB - 1]);   // 1eme index du tabPartiton
                 counterAB++
+                counterDepart--
                 console.log("init2")
             }
             else {
@@ -176,14 +181,22 @@ export function Caroussel(props) {
         else {
             console.log("ok");
         }
-    }   
+    }
+
     let intervalId = null;
-    intervalId = setInterval(decompte, 700);
-}
 
-//changer les image tout les 3 setinterval 
+    function start(){
 
-//
+        intervalId = setInterval(decompte, 1000);
+    }
+
+    function test(){
+        counterDepart-- 
+        return ( 
+            counterDepart 
+            )  
+
+    }
     console.log("avant les return")
     if(session.state == 'loading') {
         console.log("1er return")
@@ -194,24 +207,34 @@ export function Caroussel(props) {
             </>
         )
     }
-    //faire une tableau de composant
+
+
     //ici mes donnée sont charger
     else if(session.state == 'ready'){
         console.log("2nd return")
 
-
-
         console.log("tabLink 2nd retur : ", session.tabLinkAcc)
         return (
             <>
-            <div>A vous de jouer !</div>
-                <div className="playerCar">               
-                    <div id="content"></div>
-                    {/* {tableauHTMLImage} */}
+                <div className="conseil">A vous de jouer ! <br/>
+                    attendre que l'accord soit arrivé dans le cadre pour jouer</div>
+                    <div className="playerCar">
+                        <div className="blockajouer">
+
+                        </div>             
+                        <div className="repaire">
+
+                        </div> 
+                        {/* <div className="counter">
+                            {(counterDepart)} 
+                        </div> */}
+                        <div id="content"></div>
+                    </div>
+                <button className="btn btn-danger col-6" onClick={start}>play</button>
+                <button className="btn btn-danger col-6" onClick={finish}>pause</button>
+                <div>Appuyez sur play pour commencer !<br/>
+                    Actualiser la page pour rejouer !
                 </div>
-            <button className="btn btn-danger col-6" onClick={startGame}>play</button>
-            <button className="btn btn-danger col-6" onClick={startGame}>pause</button>
-            <div>Appuyez sur play pour commencer !</div>
             </>
         );
     }

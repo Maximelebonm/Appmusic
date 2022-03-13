@@ -4,6 +4,8 @@
 }
 .playerSecond{
     background-color: rgb(53, 104, 124) ;
+    width : 1280px;
+    margin : 0px;
     height : 40px;
     color : white;
     display : flex;

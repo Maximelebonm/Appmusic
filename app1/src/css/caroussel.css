@@ -7,11 +7,38 @@
 .imgcar {
    float:left;
    position : fixed;
-   margin-left :60%;
-   height : 125px;
-   width : auto;
+   margin-left :1280px;
+   height : auto;
+   width : 180px;
+   z-index: -1;
    /* visibility: hidden; */
 } 
 .imagcar:target{
    visibility: visible;
+}
+.repaire{
+   width : 6px;
+   border-radius: 5px;
+   background-color: black;
+   margin-left : 637px;
+   height : 270px;
+
+}
+.conseil{
+   text-align: center;
+   font-weight: bold ;
+   margin-bottom: 15px;
+}
+.blockajouer{
+   height : 252px;
+   width : 180px;
+   margin-left : 420px;
+   border : solid 5px rgb(54, 94, 128);
+   border-radius: 5px;
+   position : fixed;
+}
+.counter{
+   font-size: 50px;
+   margin-top: -200px;
+   margin-left: 150px;
 }
