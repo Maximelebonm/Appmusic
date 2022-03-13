@@ -1,7 +1,10 @@
 
- .playerCar {
+.ConteneurPlayer{
+   background-color: aquamarine;
+   width : 1280px;
+} 
+.playerCar {
     /* padding-left: 500px; */
-
     height : 280px;
 }
 .imgcar {
@@ -10,7 +13,7 @@
    margin-left :1280px;
    height : auto;
    width : 180px;
-   z-index: -1;
+ 
    /* visibility: hidden; */
 } 
 .imagcar:target{
@@ -22,6 +25,7 @@
    background-color: black;
    margin-left : 637px;
    height : 270px;
+   z-index: 1;
 
 }
 .conseil{
@@ -36,6 +40,10 @@
    border : solid 5px rgb(54, 94, 128);
    border-radius: 5px;
    position : fixed;
+   z-index: 1;
+}
+.content{
+   width: 1280px;
 }
 .counter{
    font-size: 50px;

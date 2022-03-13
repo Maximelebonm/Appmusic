@@ -10,8 +10,8 @@ const PlayScreen = () => {
     return ( 
         <>
         <div className="playerMain">
-        </div>
                 <div className="playerSecond">Titre de la musique</div> 
+        </div>
                 <Caroussel/>
         </>
     );

@@ -1,0 +1,27 @@
+.navigation{
+    background-color: rgb(141, 141, 141);
+    border-bottom: 2px solid rgb(196, 196, 196);
+    height : 70px;
+    width : 100%;
+    display : flex;
+    align-items: center;
+}
+.mainNav{
+    display : flex;
+    justify-content: flex-end;
+    width : 100%;
+}
+.logo{
+    color: white;
+    background-color: black;
+    padding: 15px;
+    height : 70px;
+}
+
+.navitem{
+    color : rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    padding : 15px;
+    height : 70px;
+}
