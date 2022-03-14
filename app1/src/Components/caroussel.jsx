@@ -2,6 +2,7 @@
 import "../css/caroussel.css";
 import { useState, useEffect, Component, Fragment } from "react";
 import { Accord } from "../Models/accord.model";
+import "../musicfont/styles.css";
 //import { FetchAccord } from "../Components/fetchaccord";
 
 
@@ -229,8 +230,10 @@ export function Caroussel(props) {
                     </div>
                 </div>
                 <div className="playerOption">
-                    <button className="boutonPLay" onClick={start}>play</button>
-                    <button className="boutonStop" onClick={finish}>pause</button>
+                    {/* <button className="boutonPLay" onClick={start}>play</button>
+                    <button className="boutonStop" onClick={finish}>pause</button> */}
+                    <div class="icon-play" onClick={start}></div>
+                    <div class="icon-pause" onClick={finish}></div>
                 </div>
                 <div>Appuyez sur play pour commencer !<br />
                     Actualiser la page pour rejouer !

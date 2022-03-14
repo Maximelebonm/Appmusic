@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "musicfont";
-  src:url("fonts/musicfont.eot");
-  src:url("fonts/musicfont.eot?#iefix") format("embedded-opentype"),
-    url("fonts/musicfont.woff") format("woff"),
-    url("fonts/musicfont.ttf") format("truetype"),
-    url("fonts/musicfont.svg#musicfont") format("svg");
+  src:url("./fonts/musicfont.eot");
+  src:url("./fonts/musicfont.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/musicfont.woff") format("woff"),
+    url("./fonts/musicfont.ttf") format("truetype"),
+    url("./fonts/musicfont.svg#musicfont") format("svg");
   font-weight: normal;
   font-style: normal;
 

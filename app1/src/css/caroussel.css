@@ -6,6 +6,7 @@
 .playerCar {
     /* padding-left: 500px; */
     height : 280px;
+  
 }
 .imgcar {
    float:left;
@@ -15,8 +16,6 @@
    width : 180px;
    border-radius: 10px;
    z-index : 1
-
- 
    /* visibility: hidden; */
 } 
 .imagcar:target{
@@ -57,8 +56,34 @@
    width : 100%;
    display : flex;
    justify-content: center;
+   align-items: center
    
 }
+.icon-play{
+   cursor: pointer;
+   font-size: 40px;
+   height : 40px;
+   width : 40px
+}
+.icon-play:hover{
+  color :rgb(220, 220, 220);
+}
+.icon-play:active{
+   font-size: 35px;
+}
+.icon-pause{
+   cursor: pointer;
+   font-size: 40px;
+   height : 40px;
+   width : 40px
+}
+.icon-pause:hover{
+  color :rgb(220, 220, 220);
+}
+.icon-pause:active{
+   font-size: 30px;
+}
+
 .boutonPLay{
    border-radius: 10px;
    border : 0px;
