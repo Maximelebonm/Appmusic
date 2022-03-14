@@ -220,10 +220,8 @@ export function Caroussel(props) {
                 <div className="conseil">A vous de jouer ! <br />
                     attendre que l'accord soit arrivé dans le cadre pour jouer</div>
                 <div className="playerCar">
-                    <div className="blockajouer">
-
-                    </div>
-                    <div className="repaire"> </div>
+                    <div className="blockajouer"></div>
+                    <div className="repaire"></div>
 
                     <div id="content">
 
@@ -232,7 +230,7 @@ export function Caroussel(props) {
                 <div className="playerOption">
                     {/* <button className="boutonPLay" onClick={start}>play</button>
                     <button className="boutonStop" onClick={finish}>pause</button> */}
-                    <div class="icon-play" onClick={start}></div>
+                    <div class="play"><i  class="icon-play" onClick={start}></i></div>
                     <div class="icon-pause" onClick={finish}></div>
                 </div>
                 <div>Appuyez sur play pour commencer !<br />

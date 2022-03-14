@@ -15,7 +15,7 @@
    height : auto;
    width : 180px;
    border-radius: 10px;
-   z-index : 1
+   z-index : 0
    /* visibility: hidden; */
 } 
 .imagcar:target{
@@ -27,6 +27,7 @@
    background-color: rgb(238, 8, 8);
    margin-left : 637px;
    height : 270px;
+   position : fixed;
    z-index: 2;
 
 }
@@ -53,36 +54,36 @@
    margin-left: 150px;
 }
 .playerOption{
-   width : 100%;
+   width : 200px;
+   border-radius: 5px;
+   height : 40px;
    display : flex;
    justify-content: center;
-   align-items: center
-   
+   align-items: center;
+   margin-left: 540px;
+   background-color: rgb(70, 70, 70);
 }
-.icon-play{
+
+.icon-play , .icon-pause{
+   display : flex;
+   vertical-align: middle;
    cursor: pointer;
+   margin : 0px;
+   height : 35px;
+   width : 35px;
+   border-radius: 50%;
    font-size: 40px;
-   height : 40px;
-   width : 40px
+   color : black;
 }
-.icon-play:hover{
+.icon-play:hover, .icon-pause:hover{
   color :rgb(220, 220, 220);
 }
-.icon-play:active{
+.icon-play:active, .icon-pause:active{
    font-size: 35px;
+   height : 35px;
+   width : 35px;
 }
-.icon-pause{
-   cursor: pointer;
-   font-size: 40px;
-   height : 40px;
-   width : 40px
-}
-.icon-pause:hover{
-  color :rgb(220, 220, 220);
-}
-.icon-pause:active{
-   font-size: 30px;
-}
+
 
 .boutonPLay{
    border-radius: 10px;
