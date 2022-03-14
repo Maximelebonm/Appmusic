@@ -10,9 +10,9 @@ const PlayScreen = () => {
     return ( 
         <>
         <div className="playerMain">
-                <div className="playerSecond">Titre de la musique</div> 
-        </div>
+                <div className="playerSecond">Johnny Hallyday - Le Pénitencier</div> 
                 <Caroussel/>
+        </div>
         </>
     );
 };

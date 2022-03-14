@@ -14,58 +14,58 @@ export function Caroussel(props) {
     const [accords, setAccords] = useState([]);
     const [tabLinkAcc, setTabLinkAcc] = useState([]);
     const [startBtn, setStartBtn] = useState();
-    const [session, setSession] = useState({state:'loading', tabLinkAcc:[],})
+    const [session, setSession] = useState({ state: 'loading', tabLinkAcc: [], })
 
     useEffect(() => {
         const fetchData = async () => {
             console.log("fetch")
             let dataAccords = await (await fetch('http://localhost:5001/accord')).json();
             let data2 = await (await fetch('http://localhost:5001/musique')).json();
-            return {dataAccords, data2} 
+            return { dataAccords, data2 }
             //setAccords(data);         
         }
-        fetchData().then(sess => { 
-        console.log(sess.data2[0].musiqueAccord)
+        fetchData().then(sess => {
+            console.log(sess.data2[0].musiqueAccord)
 
-        let tabpartiton = sess.data2[0].musiqueAccord
+            let tabpartiton = sess.data2[0].musiqueAccord
 
 
-        let tabLink = [];
-        let tabImgs = [];
-        
-        const link = () => {            
-                for (let i = 0; i < tabpartiton.length; i++) {         
-                    let lien = sess.dataAccords[tabpartiton[i]-1]?.chemin
+            let tabLink = [];
+            let tabImgs = [];
+
+            const link = () => {
+                for (let i = 0; i < tabpartiton.length; i++) {
+                    let lien = sess.dataAccords[tabpartiton[i] - 1]?.chemin
                     // genere variable
                     tabLink.push(lien)
                 }
-                tabLink.forEach((item,index) => {                   
+                tabLink.forEach((item, index) => {
                     let AccordCharger = document.createElement('img');
                     AccordCharger.src = item;
                     AccordCharger.className = "imgcar";
                     AccordCharger.id = index;
                     tabImgs[index] = AccordCharger
-                    document.getElementById('content').appendChild(AccordCharger)  
+                    document.getElementById('content').appendChild(AccordCharger)
                 })
-            }        
-        link()
-        console.log("TabImgs : ",tabImgs)
-        console.log("tablink : ",tabLink)
+            }
+            link()
+            console.log("TabImgs : ", tabImgs)
+            console.log("tablink : ", tabLink)
 
-        console.log("Fin de UseEffect");
-        //setTabLinkAcc(tabLink)
-        setSession({
-            tabImgs,
-            tabLinkAcc:tabLink, 
-            state:'ready',
-          //accord,current,partition,state(loading)(ready)(pause)(stop)
-         })
-    })
-    .catch(console.log())
-    //setLoadingState('Ready')
+            console.log("Fin de UseEffect");
+            //setTabLinkAcc(tabLink)
+            setSession({
+                tabImgs,
+                tabLinkAcc: tabLink,
+                state: 'ready',
+                //accord,current,partition,state(loading)(ready)(pause)(stop)
+            })
+        })
+            .catch(console.log())
+        //setLoadingState('Ready')
     }, []);
- 
-  
+
+
     console.log('startgame');
     let jouer;
     //resize on window //heroku
@@ -106,7 +106,7 @@ export function Caroussel(props) {
 
     function decompte() {
         // tabimage.forEach(item => {
-        
+
         counter--;
         // decompte.innerHTML = counter
         //console.log("counter visible : " + counter)
@@ -145,7 +145,7 @@ export function Caroussel(props) {
         else if (counter === 8) {
             if (counterAB >= session.tabImgs.length - 2) {
                 console.log("fin1")
-                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
+                animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
 
@@ -185,20 +185,20 @@ export function Caroussel(props) {
 
     let intervalId = null;
 
-    function start(){
+    function start() {
 
         intervalId = setInterval(decompte, 1000);
     }
 
-    function test(){
-        counterDepart-- 
-        return ( 
-            counterDepart 
-            )  
+    function test() {
+        counterDepart--
+        return (
+            counterDepart
+        )
 
     }
     console.log("avant les return")
-    if(session.state == 'loading') {
+    if (session.state == 'loading') {
         console.log("1er return")
         return (
             <>
@@ -210,29 +210,29 @@ export function Caroussel(props) {
 
 
     //ici mes donnée sont charger
-    else if(session.state == 'ready'){
+    else if (session.state == 'ready') {
         console.log("2nd return")
 
         console.log("tabLink 2nd retur : ", session.tabLinkAcc)
         return (
             <>
-                <div className="conseil">A vous de jouer ! <br/>
+                <div className="conseil">A vous de jouer ! <br />
                     attendre que l'accord soit arrivé dans le cadre pour jouer</div>
-                    <div className="playerCar">
-                        <div className="blockajouer">
+                <div className="playerCar">
+                    <div className="blockajouer">
 
-                        </div>             
-                        <div className="repaire">
-
-                        </div> 
-                        {/* <div className="counter">
-                            {(counterDepart)} 
-                        </div> */}
-                        <div id="content"></div>
                     </div>
-                <button className="btn btn-danger col-6" onClick={start}>play</button>
-                <button className="btn btn-danger col-6" onClick={finish}>pause</button>
-                <div>Appuyez sur play pour commencer !<br/>
+                    <div className="repaire"> </div>
+
+                    <div id="content">
+
+                    </div>
+                </div>
+                <div className="playerOption">
+                    <button className="boutonPLay" onClick={start}>play</button>
+                    <button className="boutonStop" onClick={finish}>pause</button>
+                </div>
+                <div>Appuyez sur play pour commencer !<br />
                     Actualiser la page pour rejouer !
                 </div>
             </>

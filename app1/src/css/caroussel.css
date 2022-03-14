@@ -13,6 +13,9 @@
    margin-left :1280px;
    height : auto;
    width : 180px;
+   border-radius: 10px;
+   z-index : 1
+
  
    /* visibility: hidden; */
 } 
@@ -22,10 +25,10 @@
 .repaire{
    width : 6px;
    border-radius: 5px;
-   background-color: black;
+   background-color: rgb(238, 8, 8);
    margin-left : 637px;
    height : 270px;
-   z-index: 1;
+   z-index: 2;
 
 }
 .conseil{
@@ -37,10 +40,10 @@
    height : 252px;
    width : 180px;
    margin-left : 420px;
-   border : solid 5px rgb(54, 94, 128);
+   border : solid 5px rgb(55, 134, 72);
    border-radius: 5px;
    position : fixed;
-   z-index: 1;
+   z-index: 2;
 }
 .content{
    width: 1280px;
@@ -49,4 +52,40 @@
    font-size: 50px;
    margin-top: -200px;
    margin-left: 150px;
+}
+.playerOption{
+   width : 100%;
+   display : flex;
+   justify-content: center;
+   
+}
+.boutonPLay{
+   border-radius: 10px;
+   border : 0px;
+   color: white;
+   background: rgb(37,128,46);
+   background: radial-gradient(circle, rgba(37,128,46,1) 0%, rgba(7,65,7,1) 100%);
+   width : 100px;
+   height : 40px;
+}
+.boutonPLay:hover{
+   box-shadow: inset 4px 4px 15px 0px #000000;
+}
+.boutonPLay:active{
+  border : 3px solid rgb(17, 87, 7);
+}
+.boutonStop{
+   border-radius: 10px;
+   border : 0px;
+   color: white;
+   background: rgb(128,37,37);
+   background: radial-gradient(circle, rgba(128,37,37,1) 0%, rgba(65,7,7,1) 100%);
+   width : 100px;
+   height : 40px;
+}
+.boutonStop:hover{
+   box-shadow: inset 4px 4px 15px 0px #000000;
+}
+.boutonStop:active{
+   border : 3px solid rgb(87, 7, 7);
 }

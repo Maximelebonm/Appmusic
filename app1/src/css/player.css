@@ -1,10 +1,9 @@
-/* .playerMain{
-    background-color: #082646;
-    text-align: center;
-    width : 1280px;
-} */
+.playerMain{
+    background-color: #202327 ;
+    color : white;
+} 
 .playerSecond{
-    background-color: rgb(53, 104, 124) ;
+    background-color: #202327 ;
     width : 1280px;
     margin : 0px;
     height : 40px;
