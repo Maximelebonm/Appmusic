@@ -38,6 +38,7 @@ export function Caroussel(props) {
                 for (let i = 0; i < tabpartiton.length; i++) {
                     let lien = sess.dataAccords[tabpartiton[i] - 1]?.chemin
                     // genere variable
+                    //ManyToMany puis Jointure
                     tabLink.push(lien)
                 }
                 tabLink.forEach((item, index) => {
