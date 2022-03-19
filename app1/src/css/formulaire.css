@@ -1,0 +1,55 @@
+.authscreen{
+    height : 100%;
+    background-color: #202327;
+    color : white;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.fieldForm{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin : 10px;
+    
+}
+input{
+    background-color : rgba(194, 160, 98, 0.281);
+    border : solid rgb(170, 140, 84);
+    border-radius : 5px;
+    color : white;
+    padding: 12px 10px;
+    height : 40px;
+    width : 350px;
+    margin-left : auto;
+    margin-right: auto;
+    outline: none;
+}
+input:focus{
+    border : solid rgb(255, 215, 136);
+    color : white;
+}
+.buttonform{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left : auto;
+    margin-right : auto;
+    width : 350px;
+}
+.submit{
+    background-color : rgb(199, 144, 41);
+    border-radius : 5px;
+    border : none;
+    color : white;
+    width : 100px;
+    height : 40px;
+}
+.submit:hover{
+    background-color: rgb(88, 74, 46);
+}
+.submit:active{
+    background-color: rgb(51, 43, 26);
+}
