@@ -12,8 +12,18 @@
     align-items: center;
     justify-content: center;
     margin : 10px;
-    
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;  
 }
+@keyframes scale-up-center {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+
 input{
     background-color : rgba(194, 160, 98, 0.281);
     border : solid rgb(170, 140, 84);
@@ -38,6 +48,7 @@ input:focus{
     margin-left : auto;
     margin-right : auto;
     width : 350px;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; 
 }
 .submit{
     background-color: rgb(196, 159, 84);

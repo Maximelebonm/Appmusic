@@ -19,7 +19,7 @@ if (signin==undefined){
             <input type="password" className="inputauth" id="exampleInputPassword1" />
           </div>
           <div className="buttonform">
-            <Link to="/"><button type="submit" className="submit">log in</button></Link>
+            <button type="submit" className="submit" onClick={() => setSignin(undefined)}>log in</button>
             <button type="submit" className="submit" onClick={() => setSignin(true)}>Sign in</button>
           </div>
           <div className="fieldForm">
@@ -55,7 +55,7 @@ if (signin==undefined){
           </div>
           <div className="fieldForm">
             <label for="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="inputauth" id="exampleInputPassword1" />
+            <input type="password" className="inputauth" id="InputPassword1" />
           </div>
           <div className="buttonform">
             <button type="submit" className="submit" onClick={() => setSignin(undefined)}>log in</button>
