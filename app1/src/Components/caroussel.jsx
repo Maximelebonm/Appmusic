@@ -105,7 +105,7 @@ export function Caroussel(props) {
     let counterInit = 0
     let counterAB = 0
     let counterDepart = 4
-
+    //TODO reinitialiser counter AB
     function decompte() {
         // tabimage.forEach(item => {
 
@@ -192,13 +192,6 @@ export function Caroussel(props) {
         intervalId = setInterval(decompte, 1000);
     }
 
-    function test() {
-        counterDepart--
-        return (
-            counterDepart
-        )
-
-    }
     console.log("avant les return")
     if (session.state == 'loading') {
         console.log("1er return")
