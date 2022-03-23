@@ -11,4 +11,4 @@ const ExplicationScreen = () => {
 
     );
 };
-export default ExplicationScreen
+export default ExplicationScreen;
