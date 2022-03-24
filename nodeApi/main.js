@@ -1,26 +1,29 @@
-require("./api/helpers/string.helper")
+require("./api/helpers/string.helper");
+
 const express = require("express");
+
 const app = express();
+
 const cors = require("cors");
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true
+  })
+);
 
-const corsOption = {
-    origin : ["http://localhost:3000"]
-}
-app.use(cors(corsOption));
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-const routers = require("./api/routers");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
-for (const route in routers){
-    app.use(`/${route}`, new routers[route]().router)
-}
+const dbService = require('./api/services/db.service');
+const { PORT } = require("./api/configs/developpement/app.config");
+dbService.initialize();
 
-app.use('/', (req, res)=>{
-    res.send("ok")
-});
-app.use('*', (req,res)=> res.send(false));
+const config = require("./api/configs")("app");
 
-const PORT = 5001;
-app.listen(PORT, ()=> {
-    console.log(`Serveur is running on port ${PORT}.`);
+app.listen(config.PORT, () => {
+  console.log(`Server is running on port ${config.PORT}.`);
 });

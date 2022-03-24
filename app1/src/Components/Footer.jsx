@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <footer className="bg-dark text-center text-lg-start">
-
             <div className="container ">
-
                 <div className="row">
                     <div className="col-lg-3 col-md-6 mb-md-0">
                        
