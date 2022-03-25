@@ -19,7 +19,7 @@ class AuthController extends BaseController {
   }
 
   auth = async (req) => {
-    const UserService = require("../services/user.service");
+    const UserService = require("../services/appuser.service");
     const userService = new UserService();
     const rows = await userService.select({
       where: `email='${req.body.email}'`,
