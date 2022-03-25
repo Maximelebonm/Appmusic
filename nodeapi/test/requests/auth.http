@@ -1,6 +1,1 @@
-POST http://localhost:5000/auth
-Content-Type: application/json
-
-{
-    "email": "test@test.com"
-}
+get http://localhost:5006/appuser
