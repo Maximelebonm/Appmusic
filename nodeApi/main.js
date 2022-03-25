@@ -19,11 +19,10 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 const dbService = require('./api/services/db.service');
-const { PORT } = require("./api/configs/developpement/app.config");
 dbService.initialize();
 
 const config = require("./api/configs")("app");
-
 app.listen(config.PORT, () => {
   console.log(`Server is running on port ${config.PORT}.`);
 });
+

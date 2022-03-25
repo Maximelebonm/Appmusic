@@ -1,0 +1,14 @@
+{
+  "Id_genre_musical": {
+    "type": "number",
+    "default": null
+  },
+  "nom": {
+    "type": "string",
+    "default": null
+  },
+  "image": {
+    "type": "string",
+    "default": null
+  }
+}

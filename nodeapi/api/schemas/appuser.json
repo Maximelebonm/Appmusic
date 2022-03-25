@@ -1,0 +1,26 @@
+{
+  "Id_appuser": {
+    "type": "number",
+    "default": null
+  },
+  "nom": {
+    "type": "string",
+    "default": null
+  },
+  "prenom": {
+    "type": "string",
+    "default": null
+  },
+  "pseudo": {
+    "type": "string",
+    "default": null
+  },
+  "email": {
+    "type": "string",
+    "default": null
+  },
+  "password": {
+    "type": "string",
+    "default": null
+  }
+}

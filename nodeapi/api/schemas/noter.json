@@ -1,0 +1,10 @@
+{
+  "Id_musique": {
+    "type": "number",
+    "default": null
+  },
+  "Id_note": {
+    "type": "number",
+    "default": null
+  }
+}

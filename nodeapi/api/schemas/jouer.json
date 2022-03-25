@@ -1,0 +1,10 @@
+{
+  "Id_accord": {
+    "type": "number",
+    "default": null
+  },
+  "Id_instrument": {
+    "type": "number",
+    "default": null
+  }
+}

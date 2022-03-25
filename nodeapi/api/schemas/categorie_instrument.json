@@ -1,0 +1,14 @@
+{
+  "Id_categorie_instrument": {
+    "type": "number",
+    "default": null
+  },
+  "name": {
+    "type": "string",
+    "default": null
+  },
+  "image": {
+    "type": "string",
+    "default": null
+  }
+}

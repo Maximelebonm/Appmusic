@@ -1,0 +1,26 @@
+{
+  "Id_musique": {
+    "type": "number",
+    "default": null
+  },
+  "name": {
+    "type": "string",
+    "default": null
+  },
+  "image": {
+    "type": "string",
+    "default": null
+  },
+  "type": {
+    "type": "boolean",
+    "default": null
+  },
+  "view": {
+    "type": "number",
+    "default": null
+  },
+  "private": {
+    "type": "boolean",
+    "default": null
+  }
+}

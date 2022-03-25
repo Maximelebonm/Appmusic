@@ -1,0 +1,14 @@
+{
+  "Id_accord": {
+    "type": "number",
+    "default": null
+  },
+  "Id_musique": {
+    "type": "number",
+    "default": null
+  },
+  "ordre_accord": {
+    "type": "number",
+    "default": null
+  }
+}
