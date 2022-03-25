@@ -1,1 +1,1 @@
-exports.auth = require('./auth.router');
+exports.appuser = require('./appuser.router');
