@@ -5,6 +5,7 @@ class BaseService {
     constructor() {
       this.name = this.constructor.name.replace(`Service`, ``);
       this.table = this.name.unCamelize();
+      this.ModelClass = require(`../models/${this.name.unCamelize()}.model`);
     }
   
     static db;

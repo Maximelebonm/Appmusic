@@ -19,9 +19,12 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 const dbService = require("./api/services/db.service");
+
 dbService.initialize().then(() => {
   const routers = require("./api/routers");
+
   const auth = require("./api/middlewares/auth.middleware");
+  
   for (const route in routers) {
     const router = new routers[route]().router;
     app.use(`/${route}`, router, auth);

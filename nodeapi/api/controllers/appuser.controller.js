@@ -3,9 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../configs")("app");
 
-class AuthController extends BaseController {
+class AppUserController extends BaseController {
 
-  check = async (req) => {
+  check = async (req) => {  
     const token = req.cookies.auth;
     if (token) {
         let result;
@@ -18,7 +18,7 @@ class AuthController extends BaseController {
     return false;
   }
 
-  auth = async (req) => {
+  login = async (req) => {
     const UserService = require("../services/appuser.service");
     const userService = new UserService();
     const rows = await userService.select({
@@ -33,5 +33,25 @@ class AuthController extends BaseController {
       return { email: req.body.email };
     }
   }
+
+  register = async (req) => {
+    if(req.method !== 'POST') return {status:405};
+    
+    const user = await this.getUser(req.body.email);
+    if(!user){
+        const payload = {mail: req.body.email, role: 1};
+        const token = jwt.sign(payload, appConfig.JWT_SECRET, { expiresIn: '1d' });
+        //SEND MAIL
+        const html = 
+        `
+        <b>Confirmez votre inscription : </b>
+        <a href="http://localhost:3000/account/validation?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>
+        
+        `;
+        await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html});
+        return true;
+    }
+    return false;
+  }
 }
-module.exports = AuthController;
+module.exports = AppUserController;

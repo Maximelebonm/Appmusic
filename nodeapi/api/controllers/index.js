@@ -1,1 +1,1 @@
-exports.auth = require('./auth.controller');
+exports.appuser = require('./appuser.controller');

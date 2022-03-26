@@ -1,1 +1,1 @@
-exports.auth = require('./appuser.service');
+exports.appuser = require('./appuser.service');
