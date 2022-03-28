@@ -50,5 +50,7 @@ class BaseService {
       return rows;
     };
 
+ 
+
 }
 module.exports = BaseService;

@@ -11,20 +11,20 @@ class AppuserRouter extends BaseRouter {
 
         // auth/login
         this.router.post("/login", async (req, res, next) => {
-            // const response = await this.controller.login(req);
-            // res.json(response);
+            const response = await this.controller.login(req);
+            res.json(response);
         });
 
         // /auth/register
         this.router.post("/register", async (req, res, next) => {
-            // const response = await this.controller.register(req);
-            // res.json(response);
+            const response = await this.controller.register(req);
+            res.json(response);
         });
 
         // /auth/validate
         this.router.post("/validate", async (req, res, next) => {
-            // const response = await this.controller.validate(req);
-            // res.json(response);
+            const response = await this.controller.validate(req);
+            res.json(response);
         });
 
         // /auth/renew

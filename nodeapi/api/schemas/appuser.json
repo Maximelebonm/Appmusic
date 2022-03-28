@@ -22,5 +22,9 @@
   "password": {
     "type": "string",
     "default": null
+  },
+  "deleted": {
+    "type": "boolean",
+    "default": false
   }
 }

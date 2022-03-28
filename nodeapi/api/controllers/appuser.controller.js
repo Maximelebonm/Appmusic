@@ -1,9 +1,20 @@
 const BaseController = require("./base.controller");
+const MailerService = require('../services/mailer.service');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../configs")("app");
+const appConfig = require("../configs")("app");
+
+
 
 class AppUserController extends BaseController {
+
+  getUser = async (login) => {
+    const UserServiceClass = require('../services/appuser.service');
+    const service = new UserServiceClass();
+    const users = await service.select({where: `login = '${login}'`});
+    return users.length === 1 ? users.pop() : null;
+}
 
   check = async (req) => {  
     const token = req.cookies.auth;
@@ -48,10 +59,18 @@ class AppUserController extends BaseController {
         <a href="http://localhost:3000/account/validation?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>
         
         `;
-        await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html});
+        await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html, token});
         return true;
     }
     return false;
   }
+  validate = async (req) => {
+    const UserValid = require('../services/appuser.service');
+    const userNew = new UserValid();
+    const valid = await userNew.insertUser();
+    
+        
+    return true;
+  };
 }
 module.exports = AppUserController;

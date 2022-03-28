@@ -1,1 +1,10 @@
-GET http://localhost:5006/appuser
+POST http://localhost:5006/appuser/register
+Content-Type: application/json
+
+{
+    "nom" : "Lebon",
+    "prenom" : "maxime",
+    "pseudo" : "marcel",
+    "email": "lebon.maxime.m@gmail.com",
+    "password": "test"
+}
