@@ -1,5 +1,6 @@
 const BaseController = require("./base.controller");
 const MailerService = require('../services/mailer.service');
+const UserService = require('../services/appuser.service');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../configs")("app");
@@ -9,10 +10,9 @@ const appConfig = require("../configs")("app");
 
 class AppUserController extends BaseController {
 
-  getUser = async (login) => {
-    const UserServiceClass = require('../services/appuser.service');
-    const service = new UserServiceClass();
-    const users = await service.select({where: `login = '${login}'`});
+  getUser = async (email) => {
+    const service = new UserService();
+    const users = await service.select({where: `email = '${email}'`});
     return users.length === 1 ? users.pop() : null;
 }
 
@@ -30,7 +30,6 @@ class AppUserController extends BaseController {
   }
 
   login = async (req) => {
-    const UserService = require("../services/appuser.service");
     const userService = new UserService();
     const rows = await userService.select({
       where: `email='${req.body.email}'`,
@@ -50,7 +49,7 @@ class AppUserController extends BaseController {
     
     const user = await this.getUser(req.body.email);
     if(!user){
-        const payload = {mail: req.body.email, role: 1};
+        const payload = {mail: req.body.email, role: 1,password : req.body.password, nom : req.body.nom, prenom : req.body.prenom, pseudo : req.body.pseudo};
         const token = jwt.sign(payload, appConfig.JWT_SECRET, { expiresIn: '1d' });
         //SEND MAIL
         const html = 
@@ -59,15 +58,28 @@ class AppUserController extends BaseController {
         <a href="http://localhost:3000/account/validation?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>
         
         `;
-        await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html, token});
+        await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html});
         return true;
     }
     return false;
   }
   validate = async (req) => {
-    const UserValid = require('../services/appuser.service');
-    const userNew = new UserValid();
-    const valid = await userNew.insertUser();
+    const token = req.body.token;
+    let payload
+    try{
+      payload = jwt.verify(token,appConfig.JWT_SECRET);
+    }
+    catch{
+      return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
+    }
+    if(payload){ 
+      const userNew = new UserService();
+      const password = (await bcrypt.hash(payload.password,8)).replace(authconfig.HASH_PREFIX,'');
+      const user = await service.insertOneOrMany({email:payload.mail, mdp:password, role:''+payload.role});
+      return user ?
+          {data:{completed:true, message:"votre compte est bien activé, vous pouvez vous connecter"}} :
+          {data:{completed:false, message:"Une erreur est survenue ...."}} ;
+    }
     
         
     return true;

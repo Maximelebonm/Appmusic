@@ -23,8 +23,8 @@
     "type": "string",
     "default": null
   },
-  "deleted": {
-    "type": "boolean",
-    "default": false
+  "role": {
+    "type": "number",
+    "default": null
   }
 }

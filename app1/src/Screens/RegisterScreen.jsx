@@ -1,6 +1,7 @@
 import "../css/formulaire.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../helpers/string.helpers";
 //import { AuthContext } from "../contexts/AuthContext";
 
 const RegisterScreen = () => {
