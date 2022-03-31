@@ -6,5 +6,9 @@
   "nom": {
     "type": "string",
     "default": null
+  },
+  "deleted": {
+    "type": "number",
+    "default": 0
   }
 }

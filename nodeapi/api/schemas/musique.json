@@ -22,5 +22,9 @@
   "private": {
     "type": "boolean",
     "default": null
+  },
+  "deleted": {
+    "type": "number",
+    "default": 0
   }
 }

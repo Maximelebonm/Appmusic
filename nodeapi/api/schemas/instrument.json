@@ -11,6 +11,10 @@
     "type": "string",
     "default": null
   },
+  "deleted": {
+    "type": "number",
+    "default": 0
+  },
   "Id_categorie_instrument": {
     "type": "number",
     "default": null

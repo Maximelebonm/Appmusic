@@ -9,7 +9,7 @@ const appConfig = require("../configs")("app");
 
 
 class AppUserController extends BaseController {
-
+  
   getUser = async (email) => {
     const service = new UserService();
     const users = await service.select({where: `email = '${email}'`});
@@ -74,15 +74,15 @@ class AppUserController extends BaseController {
     }
     if(payload){ 
       const userNew = new UserService();
-      const password = (await bcrypt.hash(payload.password,8)).replace(authconfig.HASH_PREFIX,'');
-      const user = await service.insertOneOrMany({email:payload.mail, mdp:password, role:''+payload.role});
+      const password = (await bcrypt.hash(payload.password,8)).replace(appConfig.HASH_PREFIX,'');
+      const user = await userNew.insertUser({email:payload.mail, password:password, role:''+payload.role,nom : payload.nom, prenom : payload.prenom, pseudo : payload.pseudo});
       return user ?
           {data:{completed:true, message:"votre compte est bien activé, vous pouvez vous connecter"}} :
           {data:{completed:false, message:"Une erreur est survenue ...."}} ;
-    }
-    
-        
+    }     
     return true;
   };
-}
+
+  
+};
 module.exports = AppUserController;

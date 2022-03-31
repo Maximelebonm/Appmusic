@@ -26,5 +26,9 @@
   "role": {
     "type": "number",
     "default": null
+  },
+  "deleted": {
+    "type": "number",
+    "default": 0
   }
 }
