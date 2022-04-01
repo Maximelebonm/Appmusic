@@ -1,10 +1,16 @@
 import "../css/formulaire.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import { AuthContext } from "../contexts/AuthContext";
+import { useCookies } from "react-cookie";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/authContext";
 
 const LoginScreen = () => {
   const [signin, setSignin] = useState();
+  const navigate = useNavigate();
+  const [cookie,setCookie] = useCookies(['token']);
+  const {setAuth} = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,27 +21,28 @@ const LoginScreen = () => {
       const jsonData = Object.fromEntries(formData.entries());
       const body = JSON.stringify(jsonData);
       fetch("http://localhost:5006/appuser/login", {
-        method: "post",
+        method: 'post',
         headers: {
-          "content-type": "application/json",
+            "content-type": "application/json",
         },
         body,
-      })
-        .then((resp) => resp.text())
-        .then((text) => {
-            const data = text.toJson();
-            if(data.result){
-                document.cookie = `auth=${data.token};max-age=${60*60*24}`;
-            }
-            else{
-                document.cookie = `auth=null;max-age=0`;
-            }
-        });
+    })
+    .then(response => response.json())
+    .then(jsonData=>{
+      console.log(jsonData);
+      if (!cookie.token){
+        const age = 60*60*24
+        setCookie("token",jsonData.token,{maxAge:`${age}`});
+        setAuth({role:jsonData.role, id:jsonData.id})
+      }
+      navigate('/')
+    })
     }
 
   return (
     <>
       <div className="authscreen">
+          <div className="capsform">
         <form onSubmit={handleSubmit}>
           <div className="fieldForm">
             <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -49,14 +56,13 @@ const LoginScreen = () => {
             <button type="submit" className="submit">log in</button>
             <Link to="/register"> <button className="submit">Sign in</button></Link>
           </div>
-
           <div className="fieldForm">
             <div className="forgotpass">
               forgot your password ?
-            </div>
-            
+            </div>           
           </div>
         </form>
+        </div>
       </div>
     </>
   );

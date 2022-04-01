@@ -14,8 +14,8 @@ class AppUserController extends BaseController {
     const service = new UserService();
     const users = await service.select({where: `email = '${email}'`});
     return users.length === 1 ? users.pop() : null;
-}
-
+  }
+  
   check = async (req) => {  
     const token = req.cookies.auth;
     if (token) {
@@ -66,23 +66,25 @@ class AppUserController extends BaseController {
   validate = async (req) => {
     const token = req.body.token;
     let payload
+    let user
     try{
       payload = jwt.verify(token,appConfig.JWT_SECRET);
+      user = await this.getUser(payload.mail);
     }
     catch{
       return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
     }
-    if(payload){ 
+    if(payload && !user){ 
       const userNew = new UserService();
       const password = (await bcrypt.hash(payload.password,8)).replace(appConfig.HASH_PREFIX,'');
       const user = await userNew.insertUser({email:payload.mail, password:password, role:''+payload.role,nom : payload.nom, prenom : payload.prenom, pseudo : payload.pseudo});
       return user ?
           {data:{completed:true, message:"votre compte est bien activé, vous pouvez vous connecter"}} :
           {data:{completed:false, message:"Une erreur est survenue ...."}} ;
+    }
+    else if(user){
+      return "Adresse déjà validé"
     }     
-    return true;
-  };
-
-  
+  }; 
 };
 module.exports = AppUserController;

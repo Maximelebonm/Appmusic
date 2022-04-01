@@ -37,6 +37,7 @@ const RegisterScreen = () => {
     return (
       <>
         <div className="authscreen">
+            <div className="capsform">
         <form onSubmit={handleSubmit}>
         <div className="fieldForm">
             <label htmlFor="exampleInputEmail1" className="form-label">Nom</label>
@@ -63,6 +64,7 @@ const RegisterScreen = () => {
             <button type="submit" className="submit">Sign in</button>
           </div>
         </form>
+        </div>
       </div>
       </>
     

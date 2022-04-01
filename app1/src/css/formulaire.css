@@ -5,6 +5,18 @@
     display : flex;
     flex-direction: column;
     justify-content: center;
+    padding-bottom: 20px;
+    align-items: center;
+}
+
+.capsform{
+    border : 2px solid rgb(196, 159, 84);
+    border-radius : 7px;
+    padding-bottom: 20px;
+    width : 400px;
+    -webkit-box-shadow: 0px 0px 14px 5px #000000; 
+box-shadow: 0px 0px 14px 5px #000000;
+    
 }
 .fieldForm{
     display : flex;
@@ -40,6 +52,7 @@ input:focus{
     border : solid rgb(255, 215, 136);
     color : white;
 }
+
 .buttonform{
     display: flex;
     flex-direction: row;
@@ -50,6 +63,7 @@ input:focus{
     width : 350px;
     animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both; 
 }
+
 .submit{
     background-color: rgb(196, 159, 84);
     border-radius : 5px;
@@ -58,9 +72,28 @@ input:focus{
     width : 100px;
     height : 40px;
 }
+
 .submit:hover{
     background-color : rgb(235, 179, 76);
 }
+
 .submit:active{
     background-color: rgb(104, 87, 50);
+}
+
+.btnValid{
+    border : rgb(212, 172, 91) solid 1px;
+    color : white;
+    background-color: rgb(104, 87, 50);
+    border-radius: 4px;
+    width : 200px;
+    height : 120px;
+    font-size: 30px;
+    -webkit-box-shadow: 0px 0px 14px 5px #000000; 
+    box-shadow: 0px 0px 14px 5px #000000;
+}
+
+.textvalidscreen{
+    margin-bottom: 10px;
+    font-size: 30px;
 }

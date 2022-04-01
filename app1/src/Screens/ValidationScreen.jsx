@@ -8,8 +8,6 @@ const ValidationScreen = () => {
 
     const [message, setMessage] = useState(null);
 
-    
-
     const valid = () =>{
         console.log("validok")
         fetch("http://localhost:5006/appuser/validate", {
@@ -34,9 +32,12 @@ const ValidationScreen = () => {
 
     return (
         <>
-          <div className="authscreen">
-        
-        <button onClick={valid}>Clicker pour valider</button> 
+        <div className="authscreen">
+            <div className="textvalidscreen">
+                Pour finaliser votre inscription, clicker sur le bouton ci dessous.
+            </div>
+
+        <button className="btnValid" onClick={valid}>Cliker pour valider</button> 
         </div>
         </>
     );
