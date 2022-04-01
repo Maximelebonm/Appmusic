@@ -27,15 +27,15 @@ const LoginScreen = () => {
         },
         body,
     })
-    .then(response => response.json())
-    .then(jsonData=>{
-      console.log(jsonData);
-      if (!cookie.token){
-        const age = 60*60*24
-        setCookie("token",jsonData.token,{maxAge:`${age}`});
-        setAuth({role:jsonData.role, id:jsonData.id})
-      }
-      navigate('/')
+      .then(response => response.json())
+      .then(jsonData=>{
+        console.log(jsonData);
+        if (!cookie.token){
+          const age = 60*60*24
+          setCookie("token",jsonData.token,{maxAge:`${age}`});
+          setAuth({role:jsonData.role, id:jsonData.id})
+        }
+        navigate('/')
     })
     }
 
@@ -45,7 +45,7 @@ const LoginScreen = () => {
           <div className="capsform">
         <form onSubmit={handleSubmit}>
           <div className="fieldForm">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+            <label htmlFor="exampleInputEmail6" className="form-label">Email address</label>
             <input type="text" name="email"className="inputauth" id="InputEmail" aria-describedby="emailHelp" />
           </div>
           <div className="fieldForm">
@@ -58,7 +58,7 @@ const LoginScreen = () => {
           </div>
           <div className="fieldForm">
             <div className="forgotpass">
-              forgot your password ?
+             <Link to="/"> forgot your password ?</Link>
             </div>           
           </div>
         </form>

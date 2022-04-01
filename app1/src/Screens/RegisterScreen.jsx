@@ -10,7 +10,6 @@ const RegisterScreen = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-      //console.log("Captcha Matched");
       const form = event.currentTarget;
       const formData = new FormData(form);
       const jsonData = Object.fromEntries(formData.entries());
@@ -44,19 +43,23 @@ const RegisterScreen = () => {
             <input type="text" name="nom"className="inputauth" id="inputNom" aria-describedby="NomHelp" />
           </div>
           <div className="fieldForm">
-            <label htmlFor="exampleInputEmail1" className="form-label">Prénom</label>
+            <label htmlFor="exampleInputEmail2" className="form-label">Prénom</label>
             <input type="text" name="prenom" className="inputauth" id="inputPrenom" aria-describedby="prenomHelp" />
           </div>
           <div className="fieldForm">
-            <label htmlFor="exampleInputEmail1" className="form-label">Pseudo</label>
+            <label htmlFor="exampleInputEmail3" className="form-label">Pseudo</label>
             <input type="text" name="pseudo" className="inputauth" id="inputPseudo" aria-describedby="pseudoHelp" />
           </div>
           <div className="fieldForm">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+            <label htmlFor="exampleInputEmail4" className="form-label">Email address</label>
             <input type="email" name="email" className="inputauth" id="InputEmail" aria-describedby="emailHelp" />
           </div>
           <div className="fieldForm">
             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+            <input type="password" name="password" className="inputauth" id="InputPassword1" />
+          </div>
+          <div className="fieldForm">
+            <label htmlFor="exampleInputPassword2" className="form-label">Password</label>
             <input type="password" name="password" className="inputauth" id="InputPassword1" />
           </div>
           <div className="buttonform">
