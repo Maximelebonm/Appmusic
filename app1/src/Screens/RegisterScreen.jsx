@@ -29,6 +29,7 @@ const RegisterScreen = () => {
             }
             else{
                 document.cookie = `auth=null;max-age=0`;
+             
             }
         });
     }

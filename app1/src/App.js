@@ -1,4 +1,7 @@
 import './App.css';
+import { useContext } from "react";
+import { AuthContext } from "./contexts/authContext";
+import "./helpers/string.helpers";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BaseScreen from './Screens/BaseScreen';
 import ChoixInstrumentScreen from './Screens/ChoixInstrumentScreen';
@@ -16,25 +19,27 @@ import ValidationScreen from './Screens/ValidationScreen';
 
 
 const App = () => {
+  const { auth } = useContext(AuthContext);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
 
-            <Route path="/login" element={<LoginScreen />}/>
-            <Route path="/register" element={<RegisterScreen />}/>
+            {auth.role === 0 &&<Route path="/register" element={<RegisterScreen />}/>}
             <Route path="/account/validation" element={<ValidationScreen />}/>
+            {auth.role === 0 &&<Route path="/login" element={<LoginScreen />}/>}
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
-            <Route path="/profil" element={<ProfilScreen />} />
+            {auth.role === 1 && <Route path="/profil" element={<ProfilScreen />} />}
+            {auth.role === 1 && <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />}
+            {auth.role === 1 && <Route path="/creation" element={<CreationScreen />} />}
+            {auth.role === 1 && <Route path="/guitare" element={<GuitareScreen />} />}
+            {auth.role === 1 && <Route path="/play" element={<PlayScreen />} />}
             <Route path="/presentation" element={<PresentationScreen />} />
             <Route path="/explication" element={<ExplicationScreen />} />
-            <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />
-            <Route path="/creation" element={<CreationScreen />} />
-            <Route path="/guitare" element={<GuitareScreen />} />
-            <Route path="/play" element={<PlayScreen />} />
-            <Route path="*" element={<NotFoundScreen />} />
           </Route>
+            <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>
     </>

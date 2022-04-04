@@ -4,13 +4,13 @@ import { useCookies } from "react-cookie";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    
+
     const [cookie] = useCookies(['token']);
     const [auth, setAuth] = useState({});
     useEffect(()=>{
         if(cookie.token){
             console.log("fetch");
-            fetch("http://localhost:5000/auth/refresh_token",
+            fetch("http://localhost:5000/appuser/refresh_token",
             {
                 method: 'post', 
                 credentials:'include'     //?sert a envoyé le cookie en tant que credentials.
