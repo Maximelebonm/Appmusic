@@ -4,7 +4,7 @@ const NotFoundScreen = () =>{
     return (
         <div>
             <h1>Error This Page doesn't Exist</h1>
-            <Link to="/">Back to Home</Link>
+            <Link to="/login">Back to login</Link>
         </div>
     );
 };
