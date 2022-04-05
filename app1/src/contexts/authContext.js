@@ -6,13 +6,13 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     const [cookie] = useCookies(['token']);
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useState({role : 0});
     useEffect(()=>{
         if(cookie.token){
             console.log("fetch");
-            fetch("http://localhost:5000/appuser/refresh_token",
+            fetch("http://localhost:5006/appuser/refresh_token",
             {
-                method: 'post', 
+                // method: 'get', 
                 credentials:'include'     //?sert a envoyé le cookie en tant que credentials.
             })
             .then(response => {
@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
             .then((jsonData) => {
                 console.log("réponse app update token ", jsonData);
                 //let result;
-                if (jsonData.id) {
+                if (jsonData.result) {
                     let temp = 
                     {                  
                             "id": jsonData.id,

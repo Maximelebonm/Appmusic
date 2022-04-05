@@ -32,7 +32,7 @@ class AppuserRouter extends BaseRouter {
             // const response = await this.controller.renew(req);
             // res.json(response);
         });
-        this.router.post("/refresh_token", async (req, res, next) => {
+        this.router.get("/refresh_token", async (req, res, next) => {
             const response = await this.controller.check(req);
             res.json(response);
         });

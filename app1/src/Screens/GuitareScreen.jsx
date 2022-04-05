@@ -4,15 +4,11 @@ const GuitareScreen = () => {
     <>
         <div className="container-fluid">
         <div className="row">
-        <div className="col-12 bg-success justify-content-center">
-            
+        <div className="col-12 bg-success justify-content-center">          
              <Link to="/play" className="text-light" > 
                 music actu 1
-            </Link>
-               
-           
-            </div>
-    
+            </Link> 
+            </div>   
      <div className="col-6 bg-primary text-light">
              <ul>
              <Link to="/play" className="text-light" > 
@@ -28,8 +24,7 @@ const GuitareScreen = () => {
            
              <Link to="/creation" className="text-light" > 
                  création de musique  
-            </Link>
-                
+            </Link>               
      </div>
             <div className="bg-danger col-6">
             <ul>
@@ -56,6 +51,5 @@ const GuitareScreen = () => {
         </div>
     </>
     );
-
 };
 export default GuitareScreen;

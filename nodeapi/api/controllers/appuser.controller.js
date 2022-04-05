@@ -14,20 +14,19 @@ class AppUserController extends BaseController {
     const service = new UserService();
     const users = await service.select({where: `email = '${email}'`});
     return users.length === 1 ? users.pop() : null;
+}
+
+check = async (req) => {
+  const auth = req.cookies.token;
+  if(auth){
+      const result = jwt.verify(auth, config.JWT_SECRET);
+      if(result){
+          return {result:true, role:result.role,id:result.id_appuser, email:result.email }
+      }
   }
-  
-  check = async (req) => {  
-    const token = req.cookies.auth;
-    if (token) {
-        let result;
-        try{
-            result = jwt.verify(token, config.JWT_SECRET);
-        }
-        catch{}
-        return result && result.email;
-    }
-    return false;
-  }
+  return {result:false, role:0}
+}
+
 
   login = async (req) => {
     const userService = new UserService();
@@ -36,9 +35,9 @@ class AppUserController extends BaseController {
     });
     if (rows.length === 1) {
       const user = rows.pop();
-      const { email } = user;
-      const token = jwt.sign({ email }, config.JWT_SECRET);
-      return { token };
+      // const { email } = user;
+      const token = jwt.sign({ email:user.email,role:user.role,id:user.id_appuser }, config.JWT_SECRET);
+      return { completed:true, cookie:token, role:user.role };
     } else {
       return { email: req.body.email };
     }
@@ -85,6 +84,7 @@ class AppUserController extends BaseController {
     else if(user){
       return "Adresse déjà validé"
     }     
+
   }; 
 };
 module.exports = AppUserController;

@@ -5,12 +5,15 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
+
+const corsOption = {
+  origin: ["http://localhost:3000"],
+  credentials: true,
+}
 app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    credentials: true,
-  })
+  cors(corsOption)
 );
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +27,7 @@ dbService.initialize().then(() => {
   const routers = require("./api/routers");
 
   const auth = require("./api/middlewares/auth.middleware");
-  
+
   for (const route in routers) {
     const router = new routers[route]().router;
     app.use(`/${route}`, router, auth);

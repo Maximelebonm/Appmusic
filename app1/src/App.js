@@ -25,7 +25,6 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-
             {auth.role === 0 &&<Route path="/register" element={<RegisterScreen />}/>}
             <Route path="/account/validation" element={<ValidationScreen />}/>
             {auth.role === 0 &&<Route path="/login" element={<LoginScreen />}/>}

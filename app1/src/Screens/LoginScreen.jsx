@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
 
+
 const LoginScreen = () => {
   const [signin, setSignin] = useState();
   const navigate = useNavigate();
@@ -30,10 +31,10 @@ const LoginScreen = () => {
       .then(response => response.json())
       .then(jsonData=>{
         console.log(jsonData);
-        if (!cookie.token){
-          const age = 60*60*24
-          setCookie("token",jsonData.token,{maxAge:`${age}`});
-          setAuth({role:jsonData.role, id:jsonData.id})
+        if (jsonData.completed){
+          const age = 60*60*24;
+          setCookie("token",jsonData.cookie,{maxAge:`${age}`});
+          setAuth({role:jsonData.role, id:jsonData.id});
           navigate('/');
         }
       });
@@ -59,11 +60,13 @@ const LoginScreen = () => {
           <div className="fieldForm">
             <div className="forgotpass">
              <Link to="/"> forgot your password ?</Link>
+
             </div>           
           </div>
         </form>
         </div>
       </div>
+
     </>
   );
   };
