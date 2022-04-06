@@ -70,8 +70,7 @@ const RegisterScreen = () => {
         </form>
         </div>
       </div>
-      </>
-    
+      </>    
     )
 };
 export default RegisterScreen;

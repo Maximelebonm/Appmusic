@@ -1,12 +1,12 @@
 body{
-    background: url('../../public/img/site/bg1.png') no-repeat center;
-    background-size: cover;
     margin :0;
     padding: 0;
 }
 
 .authscreen{
     height : 100%;
+    background: url('../../public/img/site/bg1.png') no-repeat center;
+    background-size: cover;
     /* background-color: #202327;
     background-repeat: none; */
     /* background-image: url('../../public/img/site/bg1.png');
@@ -20,12 +20,13 @@ body{
 }
 
 .capsform{
-    border : 2px solid rgb(196, 159, 84);
+    /* border : 2px solid rgb(196, 159, 84); */
     border-radius : 7px;
     padding-bottom: 20px;
     width : 400px;
-    -webkit-box-shadow: 0px 0px 14px 5px #000000; 
-    box-shadow: 0px 0px 14px 5px #000000;
+    /* background-color: #202327; */
+    /* -webkit-box-shadow: 0px 0px 14px 5px #000000; 
+    box-shadow: 0px 0px 14px 5px #000000; */
 }
 
 .fieldForm{
@@ -34,7 +35,7 @@ body{
     align-items: center;
     justify-content: center;
     margin : 10px;
-    background-color: #202327;
+    /* background-color: #202327; */
     animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;  
 }
 @keyframes scale-up-center {
@@ -48,8 +49,8 @@ body{
   
 
 input{
-    background-color : rgba(194, 160, 98, 0.281);
-    border : solid rgb(170, 140, 84);
+    background-color : rgba(194, 160, 98, 0.803);
+    border : solid rgb(253, 226, 175);
     border-radius : 5px;
     color : white;
     padding: 12px 10px;
