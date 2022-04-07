@@ -3,8 +3,11 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RenewMailScreen = () => {
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -18,9 +21,9 @@ const RenewMailScreen = () => {
             "content-type": "application/json",
           },
           body,
-        })
-           
-      }
+        })           
+    }
+
     return (
         <div className="authscreen">
         <form onSubmit={handleSubmit}>

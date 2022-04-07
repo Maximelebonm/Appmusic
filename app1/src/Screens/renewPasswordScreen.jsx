@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RenewPassWordScreen = () => {
-
+  const navigate = useNavigate();
   const[searchParams]= useSearchParams();
   const token = searchParams.get("t");
 
@@ -40,6 +41,8 @@ const RenewPassWordScreen = () => {
               document.cookie = `auth=null;max-age=0`;
           }
           console.log("fetchvalid");
+          navigate('/login'); 
+          
       });
       }    
     }

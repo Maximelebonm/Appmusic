@@ -32,7 +32,7 @@ const App = () => {
             {auth.role === 0 &&<Route path="/login" element={<LoginScreen />}/>}
             {auth.role === 0 &&<Route path="/renewpass" element={<RenewPassWordScreen />}/>}
             {auth.role === 0 &&<Route path="/renewmail" element={<RenewMailScreen />}/>}
-          <Route path="/" element={<BaseScreen />}>
+            {auth.role === 1 &&<Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
             {auth.role === 1 && <Route path="/profil" element={<ProfilScreen />} />}
             {auth.role === 1 && <Route path="/choixinstrument" element={<ChoixInstrumentScreen />} />}
@@ -42,7 +42,7 @@ const App = () => {
             {auth.role === 1 && <Route path="/logout" element={<LogoutScreen />} />}
             <Route path="/presentation" element={<PresentationScreen />} />
             <Route path="/explication" element={<ExplicationScreen />} />
-          </Route>
+          </Route>}
             <Route path="*" element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>

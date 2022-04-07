@@ -109,11 +109,12 @@ check = async (req) => {
 
   renewpass = async (req) => {
     if(req.method !== 'POST') return {status:405};
+
     const token = req.body.token;
     let payload
     let user
     try{
-      payload = jwt.sign(token,appConfig.JWT_SECRET);
+      payload = jwt.verify(token,appConfig.JWT_SECRET);
       user = await this.getUser(payload.mail);
     }
     catch{
@@ -121,8 +122,8 @@ check = async (req) => {
     }
     if(payload){
       const usermodify = new UserService();
-      const password = (await bcrypt.hash(payload.password,8)).replace(appConfig.HASH_PREFIX,'');
-      const rows = await usermodify.updateUser({password : req.body.password});
+      const password = (await bcrypt.hash(req.body.password1,8)).replace(appConfig.HASH_PREFIX,'');
+      const rows = await usermodify.updateUser({where : user.Id_appuser ,password:password});
     return true;
   }
   return false;
