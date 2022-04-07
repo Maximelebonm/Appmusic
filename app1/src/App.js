@@ -18,6 +18,7 @@ import ProfilScreen from './Screens/ProfilScreen';
 import ValidationScreen from './Screens/ValidationScreen';
 import LogoutScreen from './Screens/logoutscreen';
 import RenewPassWordScreen from './Screens/renewPasswordScreen';
+import RenewMailScreen from './Screens/renewMailScreen';
 
 const App = () => {
   const { auth } = useContext(AuthContext);
@@ -29,7 +30,8 @@ const App = () => {
             {auth.role === 0 &&<Route path="/register" element={<RegisterScreen />}/>}
             <Route path="/account/validation" element={<ValidationScreen />}/>
             {auth.role === 0 &&<Route path="/login" element={<LoginScreen />}/>}
-            {auth.role === 0 &&<Route path="/renew" element={<RenewPassWordScreen />}/>}
+            {auth.role === 0 &&<Route path="/renewpass" element={<RenewPassWordScreen />}/>}
+            {auth.role === 0 &&<Route path="/renewmail" element={<RenewMailScreen />}/>}
           <Route path="/" element={<BaseScreen />}>
             <Route index element={<HomeScreen />} />
             {auth.role === 1 && <Route path="/profil" element={<ProfilScreen />} />}

@@ -86,5 +86,46 @@ check = async (req) => {
     }     
 
   }; 
+
+  renewmail = async (req) =>{
+    if(req.method !== 'POST') return {status:405};
+    
+    const user = await this.getUser(req.body.email);
+    if(user){
+      const payload = {mail: req.body.email};
+      const token = jwt.sign(payload, appConfig.JWT_SECRET, { expiresIn: '1d' });
+      const html = 
+      `
+      <b>Confirmez votre inscription : </b>
+      <a href="http://localhost:3000/renewpass?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>
+      
+      `;
+      await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html});
+      return true;
+    }
+    return false;
+
+  }
+
+  renewpass = async (req) => {
+    if(req.method !== 'POST') return {status:405};
+    const token = req.body.token;
+    let payload
+    let user
+    try{
+      payload = jwt.sign(token,appConfig.JWT_SECRET);
+      user = await this.getUser(payload.mail);
+    }
+    catch{
+      return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
+    }
+    if(payload){
+      const usermodify = new UserService();
+      const password = (await bcrypt.hash(payload.password,8)).replace(appConfig.HASH_PREFIX,'');
+      const rows = await usermodify.updateUser({password : req.body.password});
+    return true;
+  }
+  return false;
+}
 };
 module.exports = AppUserController;

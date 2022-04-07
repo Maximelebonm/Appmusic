@@ -59,7 +59,7 @@ const LoginScreen = () => {
           </div>
           <div className="fieldForm">
             <div className="forgotpass">
-             <Link to="/renew"> forgot your password ?</Link>
+             <Link to="/renewmail"> forgot your password ?</Link>
 
             </div>           
           </div>

@@ -28,10 +28,16 @@ class AppuserRouter extends BaseRouter {
         });
 
         // /auth/renew
-        this.router.post("/renew", async (req, res, next) => {
-            // const response = await this.controller.renew(req);
-            // res.json(response);
+        this.router.post("/renewmail", async (req, res, next) => {
+            const response = await this.controller.renewmail(req);
+            res.json(response);
         });
+
+        this.router.post("/renewpass", async (req, res, next) => {
+            const response = await this.controller.renewpass(req);
+            res.json(response);
+        });
+
         this.router.get("/refresh_token", async (req, res, next) => {
             const response = await this.controller.check(req);
             res.json(response);

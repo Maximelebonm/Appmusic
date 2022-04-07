@@ -1,19 +1,14 @@
 import CardInstrument from "../Components/CardInstrument";
+import '../css/instrument.css'
+
 
 const ChoixInstrumentScreen = () => {
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-3">
-                    <CardInstrument title="Guitare" lien="/guitare" />
-                </div>
-                <div className="col-3">
-                    <CardInstrument title="Piano" lien="/piano" />
-                </div>
-            </div>
+        <div className="instrumentGlobal">
+                    <CardInstrument title="Guitare" lien="/guitare" src={process.env.PUBLIC_URL + '/img/site/guitare.jpeg'} />
+                    <CardInstrument title="Piano" lien="/piano" src={process.env.PUBLIC_URL + '/img/site/piano.jpeg'} />
         </div>
-
     );
 };
 export default ChoixInstrumentScreen;

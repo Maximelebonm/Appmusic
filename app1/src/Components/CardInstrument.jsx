@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import '../css/instrument.css'
 const CardInstrument = (props) => {
-    const {title, lien} = props;
+    const {title, lien, src} = props;
     return (
-        <div className="card text-center">
-            <img className="card-img-top" src="https://picsum.photos/400/200" alt="Card image cap"/>
-                <div className="card-body">
-                    <Link to={`${lien}`} className="btn btn-dark">{title}</Link>
+        <div className="intrumentGen">
+            <img className="instrumentImage" src={src} alt="Card image cap"/>
+                <div className="instrumentbody">
+                    <Link to={`${lien}`} ><button className="instrumentBouton">{title}</button></Link>
                 </div>
         </div>
     )
