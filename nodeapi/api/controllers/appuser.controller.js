@@ -14,18 +14,18 @@ class AppUserController extends BaseController {
     const service = new UserService();
     const users = await service.select({where: `email = '${email}'`});
     return users.length === 1 ? users.pop() : null;
-}
-
-check = async (req) => {
-  const auth = req.cookies.token;
-  if(auth){
-      const result = jwt.verify(auth, config.JWT_SECRET);
-      if(result){
-          return {result:true, role:result.role,id:result.id_appuser, email:result.email }
-      }
   }
-  return {result:false, role:0}
-}
+
+  check = async (req) => {
+    const auth = req.cookies.token;
+    if(auth){
+        const result = jwt.verify(auth, config.JWT_SECRET);
+        if(result){
+            return {result:true, role:result.role,id:result.id_appuser, email:result.email }
+        }
+    }
+    return {result:false, role:0}
+  }
 
 
   login = async (req) => {
@@ -97,36 +97,33 @@ check = async (req) => {
       const html = 
       `
       <b>Confirmez votre inscription : </b>
-      <a href="http://localhost:3000/renewpass?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>
-      
+      <a href="http://localhost:3000/renewpass?t=${encodeURIComponent(token)}" target="_blank">Confirmer</a>     
       `;
       await MailerService.send({to: req.body.email, subject:"Confirmer votre inscription", html});
       return true;
     }
     return false;
-
   }
 
   renewpass = async (req) => {
-    if(req.method !== 'POST') return {status:405};
-
-    const token = req.body.token;
-    let payload
-    let user
-    try{
-      payload = jwt.verify(token,appConfig.JWT_SECRET);
-      user = await this.getUser(payload.mail);
-    }
-    catch{
-      return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
-    }
-    if(payload){
-      const usermodify = new UserService();
-      const password = (await bcrypt.hash(req.body.password1,8)).replace(appConfig.HASH_PREFIX,'');
-      const rows = await usermodify.updateUser({where : user.Id_appuser ,password:password});
-    return true;
+      if(req.method !== 'POST') return {status:405};
+      const token = req.body.token;
+      let payload
+      let user
+      try{
+        payload = jwt.verify(token,appConfig.JWT_SECRET);
+        user = await this.getUser(payload.mail);
+      }
+      catch{
+        return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
+      }
+      if(payload){
+        const usermodify = new UserService();
+        const password = (await bcrypt.hash(req.body.password1,8)).replace(appConfig.HASH_PREFIX,'');
+        const rows = await usermodify.updateUser({where : user.Id_appuser ,password:password});
+        return true;
+      }
+    return false;
   }
-  return false;
-}
 };
 module.exports = AppUserController;
