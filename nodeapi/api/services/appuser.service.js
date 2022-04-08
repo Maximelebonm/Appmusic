@@ -23,10 +23,6 @@ class AppuserService extends BaseService{
         
         selectWhere = async (params) => {
             let sql = `SELECT * FROM ${this.table} WHERE Id_appuser=${params.where}`;
-            // if(params?.where){
-            //     sql += ` AND (${params.where.replace('&&','AND').replace('||','OR')})`;
-            // }
-            // sql += ";"
             const rows = await BaseService.executeQuery(sql, [0]);
             return this.ModelClass.from(rows);
            };

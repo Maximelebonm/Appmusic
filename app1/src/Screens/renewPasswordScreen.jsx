@@ -10,8 +10,6 @@ const RenewPassWordScreen = () => {
   const[searchParams]= useSearchParams();
   const token = searchParams.get("t");
 
-  const [message, setMessage] = useState(null);
-
     const handleSubmit = (event) => {
       event.preventDefault();
       let password1 = document.getElementById("inputpass1").value

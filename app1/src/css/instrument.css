@@ -1,10 +1,11 @@
 .instrumentGlobal{
     display : flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.intrumentGen{
+/* .intrumentGen{
  border : rgb(0,0,0) 2px solid;
  border-radius: 5px;
  width : 200px;
@@ -12,12 +13,14 @@
  display : flex;
  flex-direction: column;
  align-items: center;
-}
+} */
 
 .instrumentImage{
     width : 200px;
     height : 150px;
     border-radius: 5px;
+    margin-left : 15px;
+    margin-right: 15px;
 }
 
 .instrumentBouton
