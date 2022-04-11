@@ -29,6 +29,6 @@
   },
   "deleted": {
     "type": "number",
-    "default": 0
+    "default": null
   }
 }

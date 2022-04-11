@@ -1,9 +1,13 @@
 {
+  "Id_musique": {
+    "type": "number",
+    "default": null
+  },
   "Id_accord": {
     "type": "number",
     "default": null
   },
-  "Id_musique": {
+  "Id_composer": {
     "type": "number",
     "default": null
   },

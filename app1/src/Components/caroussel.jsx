@@ -20,9 +20,9 @@ export function Caroussel(props) {
     useEffect(() => {
         const fetchData = async () => {
             console.log("fetch")
-            let dataAccords = await (await fetch('http://localhost:5001/accord')).json();
-            let data2 = await (await fetch('http://localhost:5001/musique')).json();
-            return { dataAccords, data2 }
+            let dataAccords = await (await fetch('http://localhost:5001/composer')).json();
+            //let data2 = await (await fetch('http://localhost:5001/musique')).json();
+            return { dataAccords }
             //setAccords(data);         
         }
         fetchData().then(sess => {

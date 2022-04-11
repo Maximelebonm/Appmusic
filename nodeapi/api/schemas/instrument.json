@@ -13,7 +13,7 @@
   },
   "deleted": {
     "type": "number",
-    "default": 0
+    "default": null
   },
   "Id_categorie_instrument": {
     "type": "number",
