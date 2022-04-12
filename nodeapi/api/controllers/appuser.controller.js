@@ -125,5 +125,24 @@ class AppUserController extends BaseController {
       }
     return false;
   }
+
+  delete = async (req)=>{
+    if(req.method !== 'PATCH') return {status:405};
+    const token = req.body.token;
+    let payload
+    try{
+      payload = jwt.verify(token,appConfig.JWT_SECRET);
+      user = await this.getUser(payload.mail);
+    }
+    catch{
+      return {data:{completed:false, message:"Désolé une erreur est survenue ..."}};
+    }
+    if(payload){
+      const userdeleted = new UserService();
+      const rows = await userdeleted.deleteUser({where : payload.email});
+      return true;
+    }
+    return false;
+  }
 };
 module.exports = AppUserController;

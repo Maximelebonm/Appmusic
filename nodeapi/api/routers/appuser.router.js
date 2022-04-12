@@ -42,6 +42,10 @@ class AppuserRouter extends BaseRouter {
             const response = await this.controller.check(req);
             res.json(response);
         });
+        this.router.patch("/delete", async (req, res, next) => {
+            const response = await this.controller.delete(req);
+            res.json(response);
+        });
 
         // /auth
         this.router.get("/", async (req, res, next) => {

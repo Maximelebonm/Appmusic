@@ -1,4 +1,4 @@
-get http://localhost:5006/appuser/register
+POST http://localhost:5006/appuser/register
 Content-Type: application/json
 
 {

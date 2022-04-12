@@ -36,5 +36,12 @@ class AppuserService extends BaseService{
             const result = await BaseService.executeQuery(sql);
             return result.affectedRows > 0 ? await this.selectWhere({where}) : false;
           }
+          
+          deleteUser = async (params) => {
+            const where = params.where?.replaceAll('&&','AND').replaceAll('||','OR') || '0';
+            let sql = `DELETE FROM ${this.table} WHERE ${where};`;
+            const result = await DbService.executeQuery(sql);
+            return result.AffectedRows > 0;
+          }
 }
 module.exports = AppuserService;
