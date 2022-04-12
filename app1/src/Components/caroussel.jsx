@@ -121,6 +121,12 @@ export function Caroussel(props) {
                 counterAB++
                 counterDepart--
             }
+            ///Fin 1
+            else if (counterAB >= session.tabImgs.length-1){
+                animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
+                animCD(session.tabImgs[counterAB - 2]);
+                counterAB++ 
+            }
             else {
                 console.log("boucle1")
                 animAB(session.tabImgs[counterAB]);    //nouvel index       
@@ -137,6 +143,18 @@ export function Caroussel(props) {
                 counterDepart--
                 console.log("init2")
             }
+                ///Fin 1
+            else if (counterAB >= session.tabImgs.length){
+                    //index de A=>B précédent
+                    animCD(session.tabImgs[counterAB - 2]);
+                    pause()
+                }
+                /// FIN 2
+                else if (counterAB >= session.tabImgs.length-1){
+                    animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
+                    animCD(session.tabImgs[counterAB - 2]);
+                    counterAB++ 
+                }
             else {
                 console.log("boucle2")
                 animAB(session.tabImgs[counterAB]);            //nouvel index
@@ -146,11 +164,17 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 8) {
-            if (counterAB >= session.tabImgs.length - 2) {
+            //FIN 3
+            if (counterAB >= session.tabImgs.length-1) { // changer syntaxe
                 console.log("fin1")
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
+            }
+            // FIN 2
+            else if (counterAB >= session.tabImgs.length){
+                animCD(session.tabImgs[counterAB - 2]);
+                pause()
             }
             else {
                 animAB(session.tabImgs[counterAB]);
@@ -160,9 +184,11 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 4) {
-            if (counterAB >= session.tabImgs.length-1) {
+            //FIN 3
+            if (counterAB >= session.tabImgs.length) { 
                 console.log("fini2")
                 animCD(session.tabImgs[counterAB - 2]);
+                pause()
             }
             else {
                 animAB(session.tabImgs[counterAB]);
@@ -172,7 +198,7 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 1) {
-            if (counterAB < session.tabImgs.length-1) {
+            if (counterAB < session.tabImgs.length+2) {
                 counter = 17;
                 counterInit++;
             }
