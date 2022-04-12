@@ -20,15 +20,15 @@ export function Caroussel(props) {
     useEffect(() => {
         const fetchData = async () => {
             console.log("fetch")
-            let dataAccords = await (await fetch('http://localhost:5001/composer')).json();
-            //let data2 = await (await fetch('http://localhost:5001/musique')).json();
-            return { dataAccords }
+            let dataAccords = await (await fetch('http://localhost:5006/composer')).json();
+            let data2 = await (await fetch('http://localhost:5006/accord')).json();
+            return { dataAccords, data2 }
             //setAccords(data);         
         }
         fetchData().then(sess => {
-            console.log(sess.data2[0].musiqueAccord)
+            console.log(sess.dataAccords)
 
-            let tabpartiton = sess.data2[0].musiqueAccord
+            let tabpartiton = sess.dataAccords
 
 
             let tabLink = [];
@@ -36,7 +36,9 @@ export function Caroussel(props) {
 
             const link = () => {
                 for (let i = 0; i < tabpartiton.length; i++) {
-                    let lien = sess.dataAccords[tabpartiton[i] - 1]?.chemin
+                    let avantLien = sess.dataAccords[i]?.Id_accord-1
+
+                    let lien = sess.data2[avantLien].image
                     // genere variable
                     //ManyToMany puis Jointure
                     tabLink.push(lien)
