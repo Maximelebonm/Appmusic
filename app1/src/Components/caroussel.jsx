@@ -99,10 +99,10 @@ export function Caroussel(props) {
         ], 2000);
         image.style.transform = 'translate(-1560px)'
     };
-    function finish() {
+    function pause() {
         clearInterval(intervalId);
     };
-
+    
     let counter = 17;
     let counterInit = 0
     let counterAB = 0
@@ -120,7 +120,6 @@ export function Caroussel(props) {
                 console.log("init1")
                 counterAB++
                 counterDepart--
-
             }
             else {
                 console.log("boucle1")
@@ -152,7 +151,6 @@ export function Caroussel(props) {
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
-
             }
             else {
                 animAB(session.tabImgs[counterAB]);
@@ -162,7 +160,7 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 4) {
-            if (counterAB >= session.tabImgs.length - 1) {
+            if (counterAB >= session.tabImgs.length-1) {
                 console.log("fini2")
                 animCD(session.tabImgs[counterAB - 2]);
             }
@@ -174,12 +172,12 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 1) {
-            if (counterAB < session.tabImgs.length - 1) {
+            if (counterAB < session.tabImgs.length-1) {
                 counter = 17;
                 counterInit++;
             }
             else {
-                finish()
+                pause()
             }
         }
         else {
@@ -191,11 +189,20 @@ export function Caroussel(props) {
 
     function start() {
 
-        intervalId = setInterval(decompte, 1000);
+        intervalId = setInterval(decompte, 500);
     }
 
+    function reset(){
+        clearInterval(intervalId);
+        counter = 17;
+        let get = document.getElementsByClassName('imgcar');
+        get.transform = 'translate(-860px)';
+        counterAB = 0;
+
+        
+    }
     console.log("avant les return")
-    if (session.state == 'loading') {
+    if (session.state === 'loading') {
         console.log("1er return")
         return (
             <>
@@ -204,10 +211,8 @@ export function Caroussel(props) {
             </>
         )
     }
-
-
     //ici mes donnée sont charger
-    else if (session.state == 'ready') {
+    else if (session.state === 'ready') {
         console.log("2nd return")
 
         console.log("tabLink 2nd retur : ", session.tabLinkAcc)
@@ -225,9 +230,10 @@ export function Caroussel(props) {
                 </div>
                 <div className="playerOption">
                     {/* <button className="boutonPLay" onClick={start}>play</button>
-                    <button className="boutonStop" onClick={finish}>pause</button> */}
+                    <button className="boutonStop" onClick={pause}>pause</button> */}
+                    <div class="icon-to-start" onClick={reset}></div>
                     <div class="play"><i  class="icon-play" onClick={start}></i></div>
-                    <div class="icon-pause" onClick={finish}></div>
+                    <div class="icon-pause" onClick={pause}></div>
                 </div>
                 <div>Appuyez sur play pour commencer !<br />
                     Actualiser la page pour rejouer !

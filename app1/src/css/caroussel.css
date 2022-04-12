@@ -64,7 +64,7 @@
    background-color: rgb(194, 160, 98);
 }
 
-.icon-play , .icon-pause{
+.icon-play , .icon-pause, .icon-to-start{
    display : flex;
    vertical-align: middle;
    cursor: pointer;
@@ -75,10 +75,10 @@
    font-size: 40px;
    color : black;
 }
-.icon-play:hover, .icon-pause:hover{
+.icon-play:hover, .icon-pause:hover, .icon-to-start:hover{
   color :rgb(220, 220, 220);
 }
-.icon-play:active, .icon-pause:active{
+.icon-play:active, .icon-pause:active, .icon-to-start:active{
    font-size: 35px;
    height : 35px;
    width : 35px;
