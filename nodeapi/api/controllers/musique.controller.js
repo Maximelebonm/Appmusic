@@ -1,19 +1,20 @@
 const BaseController = require("./base.controller");
-const Accordservices = require("../services/accord.service")
+const Musiqueservices = require("../services/musique.service")
 const services = require("../services");
 
 
-class AccordController extends BaseController {
+class MusiqueController extends BaseController {
     getOne = async (id) => {
-        const service = new Accordservices();
+        const service = new Musiqueservices();
         const result = await service.getOne(id);
         return result;
     }
     get = async () => {
-        const service = new Accordservices();
+        const service = new Musiqueservices();
         const result = await service.get();
         return result;
     }
+
 }
 
-module.exports = AccordController;
+module.exports = MusiqueController;

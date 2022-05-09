@@ -27,10 +27,7 @@ export function Caroussel(props) {
         }
         fetchData().then(sess => {
             console.log(sess.dataAccords)
-
             let tabpartiton = sess.dataAccords
-
-
             let tabLink = [];
             let tabImgs = [];
 
@@ -48,13 +45,13 @@ export function Caroussel(props) {
                     AccordCharger.src = item;
                     AccordCharger.className = "imgcar";
                     AccordCharger.id = index;
-                    tabImgs[index] = AccordCharger
-                    document.getElementById('content').appendChild(AccordCharger)
+                    tabImgs[index] = AccordCharger;
+                    document.getElementById('content').appendChild(AccordCharger);
                 })
             }
             link()
-            console.log("TabImgs : ", tabImgs)
-            console.log("tablink : ", tabLink)
+            console.log("TabImgs : ", tabImgs);
+            console.log("tablink : ", tabLink);
 
             console.log("Fin de UseEffect");
             //setTabLinkAcc(tabLink)
@@ -107,28 +104,21 @@ export function Caroussel(props) {
     let counterInit = 0
     let counterAB = 0
     let counterDepart = 4
-    //TODO reinitialiser counter AB
-    function decompte() {
-        // tabimage.forEach(item => {
 
+    function decompte() {
         counter--;
-        // decompte.innerHTML = counter
-        //console.log("counter visible : " + counter)
         if (counter === 16) {
             if (counterInit === 0) {
                 animAB(session.tabImgs[counterAB]); //1er index du tabPartition
-                console.log("init1")
                 counterAB++
                 counterDepart--
             }
-            ///Fin 1
-            else if (counterAB >= session.tabImgs.length-1){
+            else if (counterAB >= session.tabImgs.length-1){ //FIN1
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);
                 counterAB++ 
             }
             else {
-                console.log("boucle1")
                 animAB(session.tabImgs[counterAB]);    //nouvel index       
                 animBC(session.tabImgs[counterAB - 1]);  //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]); // index de B=>C précédent  
@@ -141,22 +131,18 @@ export function Caroussel(props) {
                 animBC(session.tabImgs[counterAB - 1]);   // 1eme index du tabPartiton
                 counterAB++
                 counterDepart--
-                console.log("init2")
             }
-                ///Fin 1
-            else if (counterAB >= session.tabImgs.length){
+            else if (counterAB >= session.tabImgs.length){// Fin 1
                     //index de A=>B précédent
                     animCD(session.tabImgs[counterAB - 2]);
                     pause()
                 }
-                /// FIN 2
-                else if (counterAB >= session.tabImgs.length-1){
+                else if (counterAB >= session.tabImgs.length-1){ // FIN 2
                     animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                     animCD(session.tabImgs[counterAB - 2]);
                     counterAB++ 
                 }
             else {
-                console.log("boucle2")
                 animAB(session.tabImgs[counterAB]);            //nouvel index
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);          // index de B=>C précédent
@@ -164,15 +150,13 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 8) {
-            //FIN 3
-            if (counterAB >= session.tabImgs.length-1) { // changer syntaxe
+            if (counterAB >= session.tabImgs.length-1) {  //FIN 3
                 console.log("fin1")
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
             }
-            // FIN 2
-            else if (counterAB >= session.tabImgs.length){
+            else if (counterAB >= session.tabImgs.length){   // FIN 2
                 animCD(session.tabImgs[counterAB - 2]);
                 pause()
             }
@@ -184,9 +168,7 @@ export function Caroussel(props) {
             }
         }
         else if (counter === 4) {
-            //FIN 3
-            if (counterAB >= session.tabImgs.length) { 
-                console.log("fini2")
+            if (counterAB >= session.tabImgs.length) {             //FIN 3
                 animCD(session.tabImgs[counterAB - 2]);
                 pause()
             }
@@ -206,27 +188,26 @@ export function Caroussel(props) {
                 pause()
             }
         }
-        else {
-            console.log("ok");
-        }
     }
 
     let intervalId = null;
 
-    function start() {
-
-        intervalId = setInterval(decompte, 500);
+    function start() {      
+        intervalId = setInterval(decompte, 450);
     }
 
     function reset(){
         clearInterval(intervalId);
         counter = 17;
         let get = document.getElementsByClassName('imgcar');
+        get.remove(session.tabImgs[counterAB]);
+        // animAB(null);
+        animBC(null);
+        animCD(null);
         get.transform = 'translate(-860px)';
         counterAB = 0;
-
-        
     }
+
     console.log("avant les return")
     if (session.state === 'loading') {
         console.log("1er return")
@@ -255,8 +236,6 @@ export function Caroussel(props) {
                     </div>
                 </div>
                 <div className="playerOption">
-                    {/* <button className="boutonPLay" onClick={start}>play</button>
-                    <button className="boutonStop" onClick={pause}>pause</button> */}
                     <div class="icon-to-start" onClick={reset}></div>
                     <div class="play"><i  class="icon-play" onClick={start}></i></div>
                     <div class="icon-pause" onClick={pause}></div>

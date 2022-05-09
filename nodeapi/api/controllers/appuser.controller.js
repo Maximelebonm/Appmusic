@@ -62,6 +62,7 @@ class AppUserController extends BaseController {
     }
     return false;
   }
+  
   validate = async (req) => {
     const token = req.body.token;
     let payload

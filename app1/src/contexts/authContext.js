@@ -7,6 +7,8 @@ const AuthProvider = ({ children }) => {
 
     const [cookie] = useCookies(['token']);
     const [auth, setAuth] = useState({role : 0});
+    const[musique, setMusique]= useState(null);
+    
     useEffect(()=>{
         if(cookie.token){
             console.log("fetch");

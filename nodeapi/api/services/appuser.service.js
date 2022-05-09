@@ -16,10 +16,15 @@ class AppuserService extends BaseService{
             console.log(result);
             let row = null;
             if(result.affectedRows === 1){
-                row = await this.selectWhere(result.insertId);
+                row = await this.selectUser(result.insertId);
             }
             return row;
         }
+        selectUser = async (params) => {
+          let sql = `SELECT * FROM ${this.table} WHERE Id_appuser=${params}`;
+          const rows = await BaseService.executeQuery(sql, [0]);
+          return this.ModelClass.from(rows);
+         };
         
         selectWhere = async (params) => {
             let sql = `SELECT * FROM ${this.table} WHERE Id_appuser=${params.where}`;

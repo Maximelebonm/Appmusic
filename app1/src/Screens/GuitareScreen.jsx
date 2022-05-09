@@ -1,5 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 const GuitareScreen = () => {
+    const [title, setTitle] = useState();
+    useEffect(() =>{
+        const fetchData = async () => {
+            let musique = await(await fetch('http://localhost:5006/musique')).json();
+            return { musique }
+        }
+        fetchData().then(load => {
+           let titlefetch = load.musique;
+           let tabTitle = [];
+
+            for (let i = 0; i < titlefetch.length; i++) {
+                tabTitle.push(load.musique[i].name)
+            }
+
+            setTitle({
+                tabTitle,
+            })
+        })
+    }, []);
+    console.log(title)
+
+    //todo setmusique sur le onClick et importe le authprovider
+
     return (
     <>
         <div className="container-fluid">
@@ -12,7 +37,7 @@ const GuitareScreen = () => {
      <div className="col-6 bg-primary text-light">
              <ul>
              <Link to="/play" className="text-light" > 
-                <li> music tendance 1  </li>
+                <li>{title?.tabTitle[0]} </li>
             </Link>
                 <li>music tendance 2</li>
                 <li>music tendance 3</li>

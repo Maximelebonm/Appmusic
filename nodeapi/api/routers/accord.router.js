@@ -21,7 +21,6 @@ initalizeRoutes =() => {
         const response = await this.controller.get(req.body);
       res.send(response);
     });
-
-    }
+}
 }
 module.exports = AccordRouter;

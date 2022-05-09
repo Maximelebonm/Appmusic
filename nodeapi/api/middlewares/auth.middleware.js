@@ -8,7 +8,7 @@ class AuthMiddleware {
         const restricted_route = Object.keys(config.RESTRICTED_ROUTES).find(route => req.originalUrl.match(route));
         if(restricted_route){
             const predicate = config.RESTRICTED_ROUTES[restricted_route];
-            const auth = req.cookies.auth;
+            const auth = req.cookies.token;
             if(auth){
                 const result = jwt.verify(auth, config.JWT_SECRET);
                 if(result && predicate(result, res.locals)){

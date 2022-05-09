@@ -11,8 +11,9 @@ class AppuserRouter extends BaseRouter {
 
         // auth/login
         this.router.post("/login", async (req, res, next) => {
-            const response = await this.controller.login(req);
-            res.json(response);
+            // const response = await this.controller.login(req);
+            // res.json(response);
+            next(this.controller.login);
         });
 
         // /auth/register
@@ -48,11 +49,12 @@ class AppuserRouter extends BaseRouter {
         });
 
         // /auth
-        this.router.get("/", async (req, res, next) => {
+        this.router.get(" /", async (req, res, next) => {
             const response = await this.controller.check(req);
             res.json(response);
             next(this.controller.check);
         });
+
     }
 }
 module.exports = AppuserRouter;

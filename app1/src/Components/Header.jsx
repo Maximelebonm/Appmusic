@@ -19,6 +19,9 @@ const Header = () => {
                     {auth.role === 1 && (
                         <Link to="/profil" className="navitem" id="profil">Profil</Link>               
                     )};
+                      {auth.role === 1 && (
+                        <Link to="/admin" className="navitem" id="choixinstrument">admin</Link>
+                    )};
                         {auth.role === 1 && (
                         <Link to="/logout" className="navitem" id="profil">logout</Link>               
                     )};

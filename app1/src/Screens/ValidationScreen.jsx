@@ -1,12 +1,15 @@
 import "../helpers/string.helpers";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ValidationScreen = () => {
     const[searchParams]= useSearchParams();
     const token = searchParams.get("t");
 
     const [message, setMessage] = useState(null);
+    const navigate = useNavigate();
+
 
     const valid = () =>{
         console.log("validok")
@@ -26,7 +29,7 @@ const ValidationScreen = () => {
             else{
                 document.cookie = `auth=null;max-age=0`;
             }
-            console.log("fetchvalid");
+            navigate('/login');
         });
     }
 
