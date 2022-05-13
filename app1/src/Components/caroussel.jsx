@@ -7,9 +7,7 @@ import "../musicfont/styles.css";
 
 
 export function Caroussel(props) {
-
     const { img } = props;
-
     const [loadingState, setLoadingState] = useState('loading');
     console.log("entre les usestate")
     const [accords, setAccords] = useState([]);
@@ -30,20 +28,20 @@ export function Caroussel(props) {
             let tabpartiton = sess.dataAccords
             let tabLink = [];
             let tabImgs = [];
-
             const link = () => {
                 for (let i = 0; i < tabpartiton.length; i++) {
                     let avantLien = sess.dataAccords[i]?.Id_accord-1
-
                     let lien = sess.data2[avantLien].image
+                    let name = sess.data2[avantLien].name
                     // genere variable
                     //ManyToMany puis Jointure
-                    tabLink.push(lien)
+                    tabLink.push([lien,name])
                 }
                 tabLink.forEach((item, index) => {
                     let AccordCharger = document.createElement('img');
-                    AccordCharger.src = item;
+                    AccordCharger.src = item[0];
                     AccordCharger.className = "imgcar";
+                    AccordCharger.title = item[1];
                     AccordCharger.id = index;
                     tabImgs[index] = AccordCharger;
                     document.getElementById('content').appendChild(AccordCharger);
@@ -191,9 +189,10 @@ export function Caroussel(props) {
     }
 
     let intervalId = null;
-
-    function start() {      
-        intervalId = setInterval(decompte, 450);
+    function start() {
+        if(intervalId == null){
+            intervalId = setInterval(decompte, 450);
+        }
     }
 
     function reset(){
@@ -206,6 +205,11 @@ export function Caroussel(props) {
         animCD(null);
         get.transform = 'translate(-860px)';
         counterAB = 0;
+    }
+
+    function mode(){
+    //modifier les carte par le title
+
     }
 
     console.log("avant les return")
@@ -239,6 +243,7 @@ export function Caroussel(props) {
                     <div class="icon-to-start" onClick={reset}></div>
                     <div class="play"><i  class="icon-play" onClick={start}></i></div>
                     <div class="icon-pause" onClick={pause}></div>
+                    <div className="player_mode" onClick={mode}><button>Mode</button></div>
                 </div>
                 <div>Appuyez sur play pour commencer !<br />
                     Actualiser la page pour rejouer !
