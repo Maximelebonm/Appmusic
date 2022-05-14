@@ -107,13 +107,13 @@ export function Caroussel(props) {
         counter--;
         if (counter === 16) {
             if (counterInit === 0) {
-                animAB(session.tabImgs[counterAB]); //1er index du tabPartition
+                animAB(session.tabLinkAcc[counterAB][0]); //1er index du tabPartition
                 counterAB++
                 counterDepart--
             }
             else if (counterAB >= session.tabImgs.length-1){ //FIN1
-                animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
-                animCD(session.tabImgs[counterAB - 2]);
+                animBC(session.tabLinkAcc[counterAB - 1][0]);          //index de A=>B précédent
+                animCD(session.tabLinkAcc[counterAB - 2][0]);
                 counterAB++ 
             }
             else {
@@ -125,8 +125,8 @@ export function Caroussel(props) {
         }
         else if (counter === 12) {
             if (counterInit === 0) {
-                animAB(session.tabImgs[counterAB]);     // 2eme index du tabPartition
-                animBC(session.tabImgs[counterAB - 1]);   // 1eme index du tabPartiton
+                animAB(session.tabLinkAcc[counterAB][0]);     // 2eme index du tabPartition
+                animBC(session.tabLinkAcc[counterAB - 1][0]);   // 1eme index du tabPartiton
                 counterAB++
                 counterDepart--
             }
@@ -149,7 +149,6 @@ export function Caroussel(props) {
         }
         else if (counter === 8) {
             if (counterAB >= session.tabImgs.length-1) {  //FIN 3
-                console.log("fin1")
                 animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
                 animCD(session.tabImgs[counterAB - 2]);           //index de B=>C précédent
                 counterAB++
