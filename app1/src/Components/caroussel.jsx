@@ -198,6 +198,7 @@ export function Caroussel(props){
 
     function reset(){
         clearInterval(intervalId);
+        intervalId = null;
         counter = 17;
         let get = document.getElementsByClassName('imgcar');
         get.remove(session.tabImgs[counterAB]);
@@ -206,6 +207,10 @@ export function Caroussel(props){
         animCD(null);
         get.transform = 'translate(-860px)';
         counterAB = 0;
+    }
+
+    function preview(){
+        
     }
 
     function mode(){
@@ -240,10 +245,10 @@ export function Caroussel(props){
                     </div>
                 </div>
                 <div className="playerOption">
-                    <div class="icon-to-start" onClick={reset}></div>
+                    <div class="icon-to-start" onClick={preview}></div>
                     <div class="play"><i  class="icon-play" onClick={start}></i></div>
                     <div class="icon-pause" onClick={pause}></div>
-                    <div className="player_mode" onClick={mode}><button>Mode</button></div>
+                    {/* <div className="player_mode" onClick={mode}><button>Mode</button></div> */}
                 </div>
                 <div>Appuyez sur play pour commencer !<br />
                     Actualiser la page pour rejouer !
