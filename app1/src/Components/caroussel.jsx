@@ -6,7 +6,7 @@ import "../musicfont/styles.css";
 //import { FetchAccord } from "../Components/fetchaccord";
 
 
-export function Caroussel(props) {
+export function Caroussel(props){
     const { img } = props;
     const [loadingState, setLoadingState] = useState('loading');
     console.log("entre les usestate")
@@ -39,9 +39,10 @@ export function Caroussel(props) {
                 }
                 tabLink.forEach((item, index) => {
                     let AccordCharger = document.createElement('img');
+                    //TODO fonction disable (display : disable)
                     AccordCharger.src = item[0];
                     AccordCharger.className = "imgcar";
-                    AccordCharger.title = item[1];
+                    AccordCharger.alt = item[1];
                     AccordCharger.id = index;
                     tabImgs[index] = AccordCharger;
                     document.getElementById('content').appendChild(AccordCharger);
@@ -96,6 +97,7 @@ export function Caroussel(props) {
     };
     function pause() {
         clearInterval(intervalId);
+        intervalId = null;
     };
     
     let counter = 17;
@@ -103,17 +105,17 @@ export function Caroussel(props) {
     let counterAB = 0
     let counterDepart = 4
 
-    function decompte() {
+    function decompte(){
         counter--;
         if (counter === 16) {
             if (counterInit === 0) {
-                animAB(session.tabLinkAcc[counterAB][0]); //1er index du tabPartition
+                animAB(session.tabImgs[counterAB]); //1er index du tabPartition
                 counterAB++
                 counterDepart--
             }
             else if (counterAB >= session.tabImgs.length-1){ //FIN1
-                animBC(session.tabLinkAcc[counterAB - 1][0]);          //index de A=>B précédent
-                animCD(session.tabLinkAcc[counterAB - 2][0]);
+                animBC(session.tabImgs[counterAB - 1]);          //index de A=>B précédent
+                animCD(session.tabImgs[counterAB - 2]);
                 counterAB++ 
             }
             else {
@@ -125,8 +127,8 @@ export function Caroussel(props) {
         }
         else if (counter === 12) {
             if (counterInit === 0) {
-                animAB(session.tabLinkAcc[counterAB][0]);     // 2eme index du tabPartition
-                animBC(session.tabLinkAcc[counterAB - 1][0]);   // 1eme index du tabPartiton
+                animAB(session.tabImgs[counterAB]);     // 2eme index du tabPartition
+                animBC(session.tabImgs[counterAB - 1]);   // 1eme index du tabPartiton
                 counterAB++
                 counterDepart--
             }
@@ -224,7 +226,6 @@ export function Caroussel(props) {
     //ici mes donnée sont charger
     else if (session.state === 'ready') {
         console.log("2nd return")
-
         console.log("tabLink 2nd retur : ", session.tabLinkAcc)
         return (
             <>
