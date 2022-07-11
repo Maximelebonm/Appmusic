@@ -29,7 +29,6 @@
    height : 270px;
    position : fixed;
    z-index: 2;
-
 }
 .conseil{
    text-align: center;
@@ -77,15 +76,16 @@
    font-size: 40px;
    color : black;
 }
+
 .icon-play:hover, .icon-pause:hover, .icon-to-start:hover{
   color :rgb(220, 220, 220);
 }
+
 .icon-play:active, .icon-pause:active, .icon-to-start:active{
    font-size: 35px;
    height : 35px;
    width : 35px;
 }
-
 
 .boutonPLay{
    border-radius: 10px;
