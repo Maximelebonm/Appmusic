@@ -196,21 +196,53 @@ export function Caroussel(props){
         }
     }
 
+    /////////////////////////////////////////////////////
+    // RESET FUNCTION //
+    const animBA = (image) => {
+        jouer = image.animate([
+            { transform: 'translate(0px)' },
+            { transform: 'translate(600px)' },
+            { transform: 'translate(600px)' },
+        ], 200);
+        image.style.transform = 'translate(600px)'
+    };
+    function animCA(image) {
+        jouer = image.animate([
+            { transform: 'translate(600px)' },
+            { transform: 'translate(860px)' },
+            { transform: 'translate(860px)' },
+        ], 200);
+        image.style.transform = 'translate(860px)'
+    };
+    function animDA(image) {
+        jouer = image.animate([
+            { transform: 'translate(860px)' },
+            { transform: 'translate(1560px)' },
+            { transform: 'translate(1560px)' },
+        ], 200);
+        image.style.transform = 'translate(1560px)'
+    };
+
     function reset(){
+        animBA(session.tabImgs[counterAB]);
+        animCA(session.tabImgs[counterAB - 1]);
+        animDA(session.tabImgs[counterAB - 2]);     
+
         clearInterval(intervalId);
         intervalId = null;
         counter = 17;
-        let get = document.getElementsByClassName('imgcar');
-        get.remove(session.tabImgs[counterAB]);
-        // animAB(null);
+        if(counterAB>0){
+            counterAB = 0;
+        }
+
+        animAB(null);
         animBC(null);
         animCD(null);
-        get.transform = 'translate(-860px)';
-        counterAB = 0;
     }
+    ///////////////////////////////////////////////
 
     function preview(){
-        
+
     }
 
     function mode(){
@@ -245,7 +277,7 @@ export function Caroussel(props){
                     </div>
                 </div>
                 <div className="playerOption">
-                    <div class="icon-to-start" onClick={preview}></div>
+                    <div class="icon-to-start" onClick={reset}></div>
                     <div class="play"><i  class="icon-play" onClick={start}></i></div>
                     <div class="icon-pause" onClick={pause}></div>
                     {/* <div className="player_mode" onClick={mode}><button>Mode</button></div> */}
